@@ -16,10 +16,10 @@ export class Technologies {
   stack: Stack;
 
   @Column({
-    type: "enum"
+    type: "enum",
     enum: KnowledgeLevel,
     default: KnowledgeLevel.BEGINNER,
-    nullable: true
+    nullable: true,
   })
-  knowledgeLevel;
+  knowledgeLevel: KnowledgeLevel;
 }
