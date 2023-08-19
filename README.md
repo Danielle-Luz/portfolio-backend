@@ -65,7 +65,7 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 - **Nome da tabela**: developmentExperiences
 - **Colunas da tabela**:
   - **id**: inteiro, sequencial e chave primária.
-  - **stack**: caractere, tamanho máximo de 15 e obrigatório, os valores possíveis são: "Educação", "Emprego" e "Voluntariado".
+  - **type**: caractere, tamanho máximo de 15 e obrigatório, os valores possíveis são: "Educação", "Emprego" e "Voluntariado".
   - **name**: caractere, tamanho máximo de 50 e obrigatório.
   - **company**: caractere, tamanho máximo de 50 caracteres e opcional, tendo como valor default: "Empresa não informada".
   - **description**: texto e obrigatório.
