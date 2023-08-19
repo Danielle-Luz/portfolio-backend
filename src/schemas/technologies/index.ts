@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { KnowledgeLevel, Stack } from "../../enums";
+import { readProjectSchema } from "..";
 
 const stacks = Object.values(Stack) as [string, ...string[]];
 const knowledgeLevels = Object.values(KnowledgeLevel) as [string, ...string[]];
@@ -15,6 +16,7 @@ const newTechnologySchema = z.object({
 
 const readTechnologySchema = newTechnologySchema.extend({
   id: z.number(),
+  projects: z.array(readProjectSchema),
 });
 
 export { newTechnologySchema, readTechnologySchema };

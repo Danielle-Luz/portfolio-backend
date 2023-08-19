@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { Stack } from "../../enums";
+import { readTechnologySchema } from "../technologies";
 
 const stacks = Object.values(Stack) as [string, ...string[]];
 
@@ -12,8 +13,9 @@ const newProjectSchema = z.object({
   hightlight: z.boolean().optional().default(false),
 });
 
-const readProjectSchema = newProjectSchema.extend({
+const readProjectSchema: z.ZodTypeAny = newProjectSchema.extend({
   id: z.number(),
+  technologies: z.array(readTechnologySchema),
 });
 
 export { newProjectSchema, readProjectSchema };
