@@ -1,0 +1,14 @@
+{
+  "name": "portfolio-backend",
+  "version": "1.0.0",
+  "description": "Back-end of a portfolio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "dev": "tsnd --cls --rs src/server.ts"
+  },
+  "keywords": [],
+  "author": "danielle-luz",
+  "license": "ISC"
+}
