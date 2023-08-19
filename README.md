@@ -28,9 +28,9 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 <h2 id="tecnologias">Tecnologias</h2>
 
-- Typescript
+- Stackscript
 - Express
-- TypeORM
+- StackORM
 - NodeJS
 - PostgreSQL
 - Express Async Errors
@@ -55,7 +55,7 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
   - **id**: inteiro, sequencial e chave primária.
   - **name**: caractere, tamanho máximo de 20, único e obrigatório.
   - **description**: texto e obrigatório.
-  - **type**: caractere, tamanho máximo de 15 caracteres e obrigatório, os valores possíveis são: "Front-end", "Back-end" e "Full-Stack".
+  - **stack**: caractere, tamanho máximo de 15 caracteres e obrigatório, os valores possíveis são: "Front-end", "Back-end" e "Full-Stack".
   - **coverImage**: caractere, tamanho máximo de 100 caracteres e obrigatório.
   - **url**: caractere, tamanho máximo de 100 caracteres e obrigatório.
   - **highlight**: boolean, opcional e com valor default false.
@@ -65,7 +65,7 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 - **Nome da tabela**: developmentExperiences
 - **Colunas da tabela**:
   - **id**: inteiro, sequencial e chave primária.
-  - **type**: caractere, tamanho máximo de 15 e obrigatório, os valores possíveis são: "Educação", "Emprego" e "Voluntariado".
+  - **stack**: caractere, tamanho máximo de 15 e obrigatório, os valores possíveis são: "Educação", "Emprego" e "Voluntariado".
   - **name**: caractere, tamanho máximo de 50 e obrigatório.
   - **company**: caractere, tamanho máximo de 50 caracteres e opcional, tendo como valor default: "Empresa não informada".
   - **description**: texto e obrigatório.
@@ -78,8 +78,8 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 - **Colunas da tabela**:
   - **id**: inteiro, sequencial e chave primária.
   - **name**: caractere, tamanho máximo de 40 e obrigatório.
-  - **type**: caractere, tamanho máximo de 15 caracteres e obrigatório, os valores possíveis são: "Front-end", "Back-end" e "Full-Stack".
-  - **level**: caractere, tamanho máximo de 15 caracteres e opcional, os valores possíveis são: "Iniciante", "Intermediário" e "Avançado", o valor default é "Iniciante".
+  - **stack**: caractere, tamanho máximo de 15 caracteres e obrigatório, os valores possíveis são: "Front-end", "Back-end" e "Full-Stack".
+  - **knowledgeLevel**: caractere, tamanho máximo de 15 caracteres e opcional, os valores possíveis são: "Iniciante", "Intermediário" e "Avançado", o valor default é "Iniciante".
 
 ### Especificações da tabela `projectsTechnologies`
 
@@ -93,7 +93,7 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 | Método | Endpoint                    | Responsabilidade                                                                                                 |
 | ------ | --------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | GET    | /projects                   | Lista todos os projetos.                                                                                         |
-| GET    | /projects/:projectType      | Retorna um array de projetos de acordo com o tipo de projeto indicado: highlight, frontend, backend ou fullStack |
+| GET    | /projects/:stack      | Retorna um array de projetos de acordo com o tipo de projeto indicado: highlight, frontend, backend ou fullStack |
 | POST   | /projects                   | Criação de projeto.                                                                                              |
 | POST   | /projects/:id/technologies  | Relaciona as tecnologias no corpo da requisição com o projeto.                                                   |
 | PATCH  | /projects/:id               | Atualiza o projeto passado por id.                                                                                 |
@@ -148,7 +148,7 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 ]
 ```
 
-### **GET `/projects/:projectType`**
+### **GET `/projects/:stack`**
 
 ### _Regras de negócio_
 
