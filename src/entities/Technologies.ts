@@ -1,6 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { Stack } from "../enums/Stack";
-import { KnowledgeLevel } from "../enums/KnowledgeLevel";
+import { KnowledgeLevel, Stack } from "../enums";
 
 @Entity()
 export class Technologies {

@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { ExperienceType } from "../enums/ExperienceType";
+import { ExperienceType } from "../enums";
 
 @Entity()
 export class DevelopmentExperiences {

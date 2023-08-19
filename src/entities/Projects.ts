@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { Stack } from "../enums/Stack";
+import { Stack } from "../enums";
 
 @Entity()
 export class Projects {
