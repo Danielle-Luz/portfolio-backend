@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { KnowledgeLevel, Stack } from "../enums";
+import { Projects } from "./Projects";
 
 @Entity()
 export class Technologies {
@@ -22,4 +23,7 @@ export class Technologies {
     nullable: true,
   })
   knowledgeLevel: KnowledgeLevel;
+
+  @ManyToMany(() => Projects, (project) => project.technologies)
+  projects: Projects[];
 }
