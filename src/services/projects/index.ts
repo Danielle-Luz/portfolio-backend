@@ -4,8 +4,7 @@ import { newProject, updatedProject } from "../../interfaces";
 
 export class ProjectService {
   static async create(project: newProject) {
-    const createdProject = await AppDataSource.getRepository(Projects)
-      .createQueryBuilder()
+    const createdProject = await AppDataSource.createQueryBuilder()
       .insert()
       .into(Projects)
       .values(project)
@@ -15,29 +14,32 @@ export class ProjectService {
     return createdProject.generatedMaps[0];
   }
 
-  static async getOne(id: number) {
-    return AppDataSource.getRepository(Projects)
-      .createQueryBuilder("projects")
-      .where("projects.id = :id", { id })
-      .getOneOrFail();
-  }
-
-  static async getMany() {
+  static async getAll() {
     return AppDataSource.getRepository(Projects)
       .createQueryBuilder("projects")
       .getMany();
   }
 
+  static async getOne(id: number) {
+    return AppDataSource.createQueryBuilder()
+      .select("projects")
+      .from(Projects, "projects")
+      .where("projects.id = :id", { id })
+      .getOneOrFail();
+  }
+
   static async getRecordsByStack(stack: string) {
-    return AppDataSource.getRepository(Projects)
-      .createQueryBuilder("projects")
+    return AppDataSource.createQueryBuilder()
+      .select("projects")
+      .from(Projects, "projects")
       .where("projects.stack = :stack", { stack })
       .getMany();
   }
 
   static async getRecordTechnologies(id: number) {
-    const foundProject = await AppDataSource.getRepository(Projects)
-      .createQueryBuilder("projects")
+    const foundProject = await AppDataSource.createQueryBuilder()
+      .select("projects")
+      .from(Projects, "projects")
       .where("projects.id = :id", { id })
       .getOneOrFail();
 
@@ -45,20 +47,24 @@ export class ProjectService {
   }
 
   static async update(id: number, updatedProject: updatedProject) {
-    return AppDataSource.getRepository(Projects)
-      .createQueryBuilder()
+    const projectAfterUpdate = await AppDataSource.createQueryBuilder()
       .update(Projects)
       .set(updatedProject)
       .where("id = :id", { id })
+      .returning("*")
       .execute();
+
+    return projectAfterUpdate.raw;
   }
 
   static async delete(id: number) {
-    return AppDataSource.getRepository(Projects)
+    const deletedProject = await AppDataSource.getRepository(Projects)
       .createQueryBuilder()
       .delete()
-      .from(Projects)
-      .where("id = :id", { id })
+      .from(Projects, "projects")
+      .where("projects.id = :id", { id })
       .execute();
+
+    return deletedProject.affected;
   }
 }
