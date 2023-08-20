@@ -3,7 +3,7 @@ import { Technologies } from "../../entities";
 import { newTechnology, updatedTechnology } from "../../interfaces";
 
 export class TechnologyService {
-  async create(newTechnology: newTechnology) {
+  static async create(newTechnology: newTechnology) {
     const createdTechnology = await AppDataSource.createQueryBuilder()
       .insert()
       .into(Technologies)
@@ -14,7 +14,7 @@ export class TechnologyService {
     return createdTechnology.generatedMaps[0];
   }
 
-  async update(id: number, updatedTechnology: updatedTechnology) {
+  static async update(id: number, updatedTechnology: updatedTechnology) {
     const technologyAfterUpdate = await AppDataSource.createQueryBuilder()
       .update(Technologies)
       .set(updatedTechnology)
@@ -22,17 +22,16 @@ export class TechnologyService {
       .returning("*")
       .execute();
 
-    return technologyAfterUpdate.generatedMaps[0];
+    return technologyAfterUpdate.raw[0];
   }
 
-  async getAll() {
-    return AppDataSource.createQueryBuilder()
-      .select()
-      .from(Technologies, "technologies")
+  static async getAll() {
+    return AppDataSource.getRepository(Technologies)
+      .createQueryBuilder()
       .getMany();
   }
 
-  async delete(id: number) {
+  static async delete(id: number) {
     const deletedTechnology = await AppDataSource.createQueryBuilder()
       .delete()
       .from(Technologies)
