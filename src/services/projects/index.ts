@@ -91,5 +91,7 @@ export class ProjectService {
       .relation(Projects, "technologies")
       .of(foundProject)
       .add(foundTechnology);
+
+    return await ProjectService.getOne(projectId);
   }
 }
