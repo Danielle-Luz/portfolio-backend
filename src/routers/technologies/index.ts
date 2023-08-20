@@ -6,7 +6,7 @@ const technologyRouter = Router();
 
 technologyRouter.post("/", TechnologyController.create);
 
-technologyRouter.patch("/", TechnologyController.update);
+technologyRouter.patch("/:id", TechnologyController.update);
 
 technologyRouter.get("/", TechnologyController.getAll);
 technologyRouter.get("/:id", TechnologyController.getOne);
