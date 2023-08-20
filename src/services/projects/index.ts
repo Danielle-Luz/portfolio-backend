@@ -1,7 +1,7 @@
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { Projects } from "../../entities";
-import { paginationParams } from "../../interfaces";
+import { newProject, paginationParams } from "../../interfaces";
 
 export class ProjectService {
   repository: Repository<Projects>;
@@ -12,7 +12,7 @@ export class ProjectService {
     this.queryBuilder = this.repository.createQueryBuilder();
   }
 
-  async create(project: Projects) {
+  async create(project: newProject) {
     return await this.queryBuilder
       .insert()
       .into(Projects)
