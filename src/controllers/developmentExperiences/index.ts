@@ -1,5 +1,5 @@
 import { Request, Response, response } from "express";
-import { DevelopmentExperienceService } from "../../services/developmentExperiences";
+import { DevelopmentExperienceService } from "../../services";
 import { newDevelopmentExperience } from "../../interfaces";
 import { ExperienceType } from "../../enums";
 

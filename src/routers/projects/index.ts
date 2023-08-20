@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ProjectController } from "../../controllers/projects";
+import { ProjectController } from "../../controllers";
 import { app } from "../../app";
 
 const projectRouter = Router();
