@@ -17,7 +17,10 @@ export class ProjectService {
   }
 
   static async getAll() {
-    return AppDataSource.getRepository(Projects).createQueryBuilder().getMany();
+    return AppDataSource.getRepository(Projects)
+      .createQueryBuilder("projects")
+      .leftJoinAndSelect("projects.technologies", "technologies")
+      .getMany();
   }
 
   static async getOne(id: number) {
@@ -25,6 +28,7 @@ export class ProjectService {
       .select("projects")
       .from(Projects, "projects")
       .where("projects.id = :id", { id })
+      .leftJoinAndSelect("projects.technologies", "technologies")
       .getOneOrFail();
   }
 
@@ -33,6 +37,7 @@ export class ProjectService {
       .select("projects")
       .from(Projects, "projects")
       .where("projects.stack = :stack", { stack })
+      .leftJoinAndSelect("projects.technologies", "technologies")
       .getMany();
   }
 
@@ -41,6 +46,7 @@ export class ProjectService {
       .select("projects")
       .from(Projects, "projects")
       .where("projects.highlight = true")
+      .leftJoinAndSelect("projects.technologies", "technologies")
       .getMany();
   }
 
@@ -49,6 +55,7 @@ export class ProjectService {
       .select("projects")
       .from(Projects, "projects")
       .where("projects.id = :id", { id })
+      .leftJoinAndSelect("projects.technologies", "technologies")
       .getOneOrFail();
 
     return foundProject.technologies;
