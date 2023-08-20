@@ -18,4 +18,12 @@ export class ProjectService {
       .values(project)
       .execute();
   }
+
+  async getOne(id: string) {
+    return await this.queryBuilder
+      .select()
+      .from(Projects, "projects")
+      .where("projects.id = :id", { id })
+      .getOneOrFail();
+  }
 }
