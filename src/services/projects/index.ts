@@ -16,9 +16,7 @@ export class ProjectService {
   }
 
   static async getAll() {
-    return AppDataSource.getRepository(Projects)
-      .createQueryBuilder("projects")
-      .getMany();
+    return AppDataSource.getRepository(Projects).createQueryBuilder().getMany();
   }
 
   static async getOne(id: number) {
