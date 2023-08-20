@@ -2,6 +2,7 @@ import { Repository, SelectQueryBuilder } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { Projects } from "../../entities";
 import { newProject, paginationParams } from "../../interfaces";
+import { updatedProject } from "../../interfaces/projects";
 
 export class ProjectService {
   repository: Repository<Projects>;
@@ -20,7 +21,7 @@ export class ProjectService {
       .execute();
   }
 
-  async getOne(id: string) {
+  async getOne(id: number) {
     return await this.queryBuilder
       .select()
       .from(Projects, "projects")
@@ -33,5 +34,13 @@ export class ProjectService {
       .select()
       .from(Projects, "projects")
       .getMany();
+  }
+
+  async update(id: number, updatedProject: updatedProject) {
+    return await this.queryBuilder
+      .update(Projects)
+      .set(updatedProject)
+      .where("id = :id", { id })
+      .execute();
   }
 }
