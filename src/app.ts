@@ -5,6 +5,6 @@ const express = require("express");
 const app = express();
 
 app.use(express.json());
-app.user(errorHandler);
+app.use(errorHandler);
 
 export { app };

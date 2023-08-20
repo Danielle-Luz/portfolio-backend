@@ -4,4 +4,17 @@ interface zodFieldErrors {
   [x: symbol]: string[] | undefined;
 }
 
-export { zodFieldErrors };
+interface paginationParams {
+  page: number;
+  perPage: number;
+  order: string;
+  sort: string;
+  prevPage: string | null;
+  nextPage: string | null;
+}
+
+interface recordId {
+  id: number;
+}
+
+export { zodFieldErrors, paginationParams, recordId };

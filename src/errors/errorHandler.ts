@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { AppError } from "./AppError";
 import { ZodError, ZodErrorMap } from "zod";
-import { zodFieldErrors } from "../interfaces/utils";
+import { zodFieldErrors } from "../interfaces";
 
 export function errorHandler(
   error: Error,
