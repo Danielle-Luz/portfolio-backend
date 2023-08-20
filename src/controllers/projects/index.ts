@@ -5,9 +5,11 @@ import { Stack } from "../../enums";
 
 export class ProjectController {
   static async create(request: Request, response: Response) {
-    const { project } = request;
+    const { project: newRecordData } = request;
 
-    const createdProject = await ProjectService.create(project as newProject);
+    const createdProject = await ProjectService.create(
+      newRecordData as newProject
+    );
 
     return response.status(201).json(createdProject);
   }
@@ -49,12 +51,9 @@ export class ProjectController {
   }
 
   static async update(request: Request, response: Response) {
-    const { recordId, project: updatedProjectData } = request;
+    const { recordId, project: updatedData } = request;
 
-    const updatedProject = await ProjectService.update(
-      recordId,
-      updatedProjectData
-    );
+    const updatedProject = await ProjectService.update(recordId, updatedData);
 
     return response.status(200).json(updatedProject);
   }
