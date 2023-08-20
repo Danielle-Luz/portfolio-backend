@@ -61,7 +61,7 @@ export class ProjectService {
       .returning("*")
       .execute();
 
-    return projectAfterUpdate.raw;
+    return projectAfterUpdate.raw[0];
   }
 
   static async delete(id: number) {

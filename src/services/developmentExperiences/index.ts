@@ -45,7 +45,7 @@ export class DevelopmentExperienceService {
         .returning("*")
         .execute();
 
-    return developmentExperienceAfterUpdate.raw;
+    return developmentExperienceAfterUpdate.raw[0];
   }
 
   static async delete(id: number) {
