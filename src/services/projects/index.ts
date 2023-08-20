@@ -27,7 +27,7 @@ export class ProjectService {
       .getOneOrFail();
   }
 
-  static async getRecordsByStack(stack: string) {
+  static async getByStack(stack: string) {
     return AppDataSource.createQueryBuilder()
       .select("projects")
       .from(Projects, "projects")
@@ -35,7 +35,15 @@ export class ProjectService {
       .getMany();
   }
 
-  static async getRecordTechnologies(id: number) {
+  static async getHighlights() {
+    return AppDataSource.createQueryBuilder()
+      .select("projects")
+      .from(Projects, "projects")
+      .where("projects.highlight = true")
+      .getMany();
+  }
+
+  static async getTechnologies(id: number) {
     const foundProject = await AppDataSource.createQueryBuilder()
       .select("projects")
       .from(Projects, "projects")

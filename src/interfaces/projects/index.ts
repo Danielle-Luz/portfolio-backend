@@ -9,7 +9,7 @@ type newProject = {
   stack: Stack;
   coverImage: string;
   url: string;
-  hightlight: boolean;
+  highlight: boolean;
 };
 type updatedProject = Partial<newProject>;
 

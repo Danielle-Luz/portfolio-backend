@@ -10,7 +10,7 @@ const newProjectSchema = z.object({
   stack: z.enum(stacks),
   coverImage: z.string().url(),
   url: z.string().url(),
-  hightlight: z.boolean().optional().default(false),
+  highlight: z.boolean().optional().default(false),
 });
 
 const readProjectSchema: z.ZodTypeAny = newProjectSchema.extend({
