@@ -13,4 +13,8 @@ interface paginationParams {
   nextPage: string | null;
 }
 
-export { zodFieldErrors, paginationParams };
+interface recordId {
+  id: number;
+}
+
+export { zodFieldErrors, paginationParams, recordId };

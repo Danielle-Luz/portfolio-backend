@@ -1,6 +1,7 @@
 import { AppDataSource } from "../../data-source";
 import { Projects } from "../../entities";
 import { newProject, updatedProject } from "../../interfaces";
+import { TechnologyService } from "../technologies";
 
 export class ProjectService {
   static async create(project: newProject) {
@@ -66,5 +67,15 @@ export class ProjectService {
       .execute();
 
     return deletedProject.affected;
+  }
+
+  static async addTechnology(projectId: number, technologyId: number) {
+    const foundProject = await ProjectService.getOne(projectId);
+    const foundTechnology = await TechnologyService.getOne(technologyId);
+
+    await AppDataSource.createQueryBuilder()
+      .relation(Projects, "technologies")
+      .of(foundProject)
+      .add(foundTechnology);
   }
 }

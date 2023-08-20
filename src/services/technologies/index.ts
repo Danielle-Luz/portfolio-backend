@@ -31,6 +31,14 @@ export class TechnologyService {
       .getMany();
   }
 
+  static async getOne(id: number) {
+    return AppDataSource.createQueryBuilder()
+      .select("technologies")
+      .from(Technologies, "technologies")
+      .where("technologies.id = :id", { id })
+      .getOneOrFail();
+  }
+
   static async delete(id: number) {
     const deletedTechnology = await AppDataSource.createQueryBuilder()
       .delete()

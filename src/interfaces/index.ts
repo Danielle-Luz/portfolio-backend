@@ -1,6 +1,6 @@
 import { newProject, readProject, updatedProject } from "./projects";
 import { newTechnology, updatedTechnology } from "./technologies";
-import { paginationParams, zodFieldErrors } from "./utils";
+import { paginationParams, zodFieldErrors, recordId } from "./utils";
 
 export {
   newProject,
@@ -10,4 +10,5 @@ export {
   updatedTechnology,
   paginationParams,
   zodFieldErrors,
+  recordId,
 };

@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Stack } from "../enums";
 import { Technologies } from "./Technologies";
 
@@ -29,5 +29,6 @@ export class Projects {
   highlight: boolean;
 
   @ManyToMany(() => Technologies, (technology) => technology.projects)
+  @JoinTable()
   technologies: Technologies[];
 }
