@@ -43,4 +43,12 @@ export class ProjectService {
       .where("id = :id", { id })
       .execute();
   }
+
+  async delete(id: number) {
+    return await this.queryBuilder
+      .delete()
+      .from(Projects)
+      .where("id = :id", { id })
+      .execute();
+  }
 }
