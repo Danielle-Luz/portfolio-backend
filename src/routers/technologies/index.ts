@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { TechnologyController } from "../../controllers/technologies";
+import { TechnologyController } from "../../controllers";
 import { app } from "../../app";
 
 const technologyRouter = Router();

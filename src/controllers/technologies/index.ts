@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { TechnologyService } from "../../services/technologies";
+import { TechnologyService } from "../../services";
 import { newTechnology, updatedTechnology } from "../../interfaces";
 
 export class TechnologyController {

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ProjectService } from "../../services/projects";
+import { ProjectService } from "../../services";
 import { newProject, recordId } from "../../interfaces";
 import { Stack } from "../../enums";
 
