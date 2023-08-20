@@ -1,5 +1,6 @@
 export enum ExperienceType {
-  EDUCATION = "Educação",
-  JOB = "Emprego",
+  ACADEMIC = "Acadêmica",
+  COURSE = "Curso",
   VOLUNTEER = "Voluntariado",
+  WORK = "Emprego",
 }
