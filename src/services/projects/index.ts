@@ -1,5 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import { Projects } from "../../entities";
+import { Stack } from "../../enums";
 import { newProject, updatedProject } from "../../interfaces";
 import { TechnologyService } from "../technologies";
 
@@ -27,7 +28,7 @@ export class ProjectService {
       .getOneOrFail();
   }
 
-  static async getByStack(stack: string) {
+  static async getByStack(stack: Stack) {
     return AppDataSource.createQueryBuilder()
       .select("projects")
       .from(Projects, "projects")
