@@ -1,44 +1,52 @@
-import { Repository, SelectQueryBuilder } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { Projects } from "../../entities";
-import { newProject, paginationParams } from "../../interfaces";
-import { updatedProject } from "../../interfaces/projects";
+import { newProject, updatedProject } from "../../interfaces";
 
 export class ProjectService {
-  static repository: Repository<Projects>;
-  static queryBuilder: SelectQueryBuilder<Projects>;
-
-  constructor() {
-    ProjectService.repository = AppDataSource.getRepository(Projects);
-    ProjectService.queryBuilder =
-      ProjectService.repository.createQueryBuilder();
-  }
-
   static async create(project: newProject) {
-    return await ProjectService.queryBuilder
+    const createdProject = await AppDataSource.getRepository(Projects)
+      .createQueryBuilder()
       .insert()
       .into(Projects)
       .values(project)
+      .returning("*")
       .execute();
+
+    return createdProject.generatedMaps[0];
   }
 
   static async getOne(id: number) {
-    return await ProjectService.queryBuilder
-      .select()
-      .from(Projects, "projects")
+    return AppDataSource.getRepository(Projects)
+      .createQueryBuilder("projects")
       .where("projects.id = :id", { id })
       .getOneOrFail();
   }
 
-  static async getMany(paginationParams: paginationParams) {
-    return await ProjectService.queryBuilder
-      .select()
-      .from(Projects, "projects")
+  static async getMany() {
+    return AppDataSource.getRepository(Projects)
+      .createQueryBuilder("projects")
       .getMany();
   }
 
+  static async getRecordsByStack(stack: string) {
+    return AppDataSource.getRepository(Projects)
+      .createQueryBuilder("projects")
+      .where("projects.stack = :stack", { stack })
+      .getMany();
+  }
+
+  static async getRecordTechnologies(id: number) {
+    const foundProject = await AppDataSource.getRepository(Projects)
+      .createQueryBuilder("projects")
+      .where("projects.id = :id", { id })
+      .getOneOrFail();
+
+    return foundProject.technologies;
+  }
+
   static async update(id: number, updatedProject: updatedProject) {
-    return await ProjectService.queryBuilder
+    return AppDataSource.getRepository(Projects)
+      .createQueryBuilder()
       .update(Projects)
       .set(updatedProject)
       .where("id = :id", { id })
@@ -46,7 +54,8 @@ export class ProjectService {
   }
 
   static async delete(id: number) {
-    return await ProjectService.queryBuilder
+    return AppDataSource.getRepository(Projects)
+      .createQueryBuilder()
       .delete()
       .from(Projects)
       .where("id = :id", { id })
