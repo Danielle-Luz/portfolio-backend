@@ -1,6 +1,7 @@
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { Projects } from "../../entities";
+import { paginationParams } from "../../interfaces/utils";
 
 export class ProjectService {
   repository: Repository<Projects>;
@@ -25,5 +26,18 @@ export class ProjectService {
       .from(Projects, "projects")
       .where("projects.id = :id", { id })
       .getOneOrFail();
+  }
+
+  async getMany(paginationParams: paginationParams) {
+    const sortField = `projects.${paginationParams.sort}`;
+    const offset = (paginationParams.page - 1) * paginationParams.perPage;
+
+    return await this.queryBuilder
+      .select()
+      .from(Projects, "projects")
+      .orderBy(sortField)
+      .skip(offset)
+      .take(paginationParams.perPage)
+      .getMany();
   }
 }
