@@ -5,47 +5,48 @@ import { newProject, paginationParams } from "../../interfaces";
 import { updatedProject } from "../../interfaces/projects";
 
 export class ProjectService {
-  repository: Repository<Projects>;
-  queryBuilder: SelectQueryBuilder<Projects>;
+  static repository: Repository<Projects>;
+  static queryBuilder: SelectQueryBuilder<Projects>;
 
   constructor() {
-    this.repository = AppDataSource.getRepository(Projects);
-    this.queryBuilder = this.repository.createQueryBuilder();
+    ProjectService.repository = AppDataSource.getRepository(Projects);
+    ProjectService.queryBuilder =
+      ProjectService.repository.createQueryBuilder();
   }
 
-  async create(project: newProject) {
-    return await this.queryBuilder
+  static async create(project: newProject) {
+    return await ProjectService.queryBuilder
       .insert()
       .into(Projects)
       .values(project)
       .execute();
   }
 
-  async getOne(id: number) {
-    return await this.queryBuilder
+  static async getOne(id: number) {
+    return await ProjectService.queryBuilder
       .select()
       .from(Projects, "projects")
       .where("projects.id = :id", { id })
       .getOneOrFail();
   }
 
-  async getMany(paginationParams: paginationParams) {
-    return await this.queryBuilder
+  static async getMany(paginationParams: paginationParams) {
+    return await ProjectService.queryBuilder
       .select()
       .from(Projects, "projects")
       .getMany();
   }
 
-  async update(id: number, updatedProject: updatedProject) {
-    return await this.queryBuilder
+  static async update(id: number, updatedProject: updatedProject) {
+    return await ProjectService.queryBuilder
       .update(Projects)
       .set(updatedProject)
       .where("id = :id", { id })
       .execute();
   }
 
-  async delete(id: number) {
-    return await this.queryBuilder
+  static async delete(id: number) {
+    return await ProjectService.queryBuilder
       .delete()
       .from(Projects)
       .where("id = :id", { id })
