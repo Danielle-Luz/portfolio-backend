@@ -3,14 +3,20 @@ import { ZodSchema } from "zod";
 import { ExperienceType, Stack } from "../../enums";
 import { InvalidIdError } from "../../errors/InvalidIdError";
 import { InvalidEnumValue } from "../../errors/InvalidEnumValue";
+import { requestStorageProperties } from "../../interfaces";
 
 export class UtilsMiddlewares {
-  validateSchema(
+  validateDataSchema(
     schema: ZodSchema,
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ) {}
+    propertyToStoreValidatedData: requestStorageProperties
+  ) {
+    return (request: Request, response: Response, next: NextFunction) => {
+      const validatedData = schema.parse(request.body);
+      request[propertyToStoreValidatedData] = validatedData;
+
+      return next();
+    };
+  }
 
   validateId(request: Request, response: Response, next: NextFunction) {
     const id = request.params.id;
@@ -29,6 +35,7 @@ export class UtilsMiddlewares {
 
   validateValueAsEnum(
     value: string,
+    paramName: string,
     enumType: typeof ExperienceType | typeof Stack
   ) {
     return (request: Request, response: Response, next: NextFunction) => {
@@ -36,7 +43,7 @@ export class UtilsMiddlewares {
       const isEnumValue = enumValues.includes(value);
 
       if (!isEnumValue) {
-        throw new InvalidEnumValue(enumValues);
+        throw new InvalidEnumValue(paramName, enumValues);
       }
 
       return next();
