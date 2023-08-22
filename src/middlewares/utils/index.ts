@@ -6,7 +6,7 @@ import { InvalidEnumValue } from "../../errors/InvalidEnumValue";
 import { requestStorageProperties } from "../../interfaces";
 
 export class UtilsMiddlewares {
-  validateDataSchema(
+  static validateDataSchema(
     schema: ZodSchema,
     propertyToStoreValidatedData: requestStorageProperties
   ) {
@@ -18,7 +18,7 @@ export class UtilsMiddlewares {
     };
   }
 
-  validateId(request: Request, response: Response, next: NextFunction) {
+  static validateId(request: Request, response: Response, next: NextFunction) {
     const id = request.params.id;
     const integerRegex = /^\d+$/;
 
@@ -33,14 +33,14 @@ export class UtilsMiddlewares {
     return next();
   }
 
-  validateValueAsEnum(
-    value: string,
+  static validateValueAsEnum(
     paramName: string,
     enumType: typeof ExperienceType | typeof Stack
   ) {
     return (request: Request, response: Response, next: NextFunction) => {
+      const paramValue = request.params[paramName];
       const enumValues = Object.values(enumType);
-      const isEnumValue = enumValues.includes(value);
+      const isEnumValue = enumValues.includes(paramValue);
 
       if (!isEnumValue) {
         throw new InvalidEnumValue(paramName, enumValues);
@@ -48,5 +48,11 @@ export class UtilsMiddlewares {
 
       return next();
     };
+  }
+
+  static validateValueAsStack() {
+    const paramName = "stack";
+
+    return UtilsMiddlewares.validateValueAsEnum(paramName, Stack);
   }
 }

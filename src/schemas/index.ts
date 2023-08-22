@@ -1,4 +1,8 @@
-import { newTechnologySchema, readTechnologySchema } from "./technologies";
+import {
+  newTechnologySchema,
+  readTechnologySchema,
+  updatedTechnologySchema,
+} from "./technologies";
 import { newProjectSchema, readProjectSchema } from "./projects";
 import {
   newDevelopmentExperience,
@@ -11,5 +15,6 @@ export {
   newProjectSchema,
   readProjectSchema,
   newTechnologySchema,
+  updatedTechnologySchema,
   readTechnologySchema,
 };

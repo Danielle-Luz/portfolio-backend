@@ -14,9 +14,11 @@ const newTechnologySchema = z.object({
     .default(KnowledgeLevel.BEGINNER),
 });
 
+const updatedTechnologySchema = newTechnologySchema.partial();
+
 const readTechnologySchema = newTechnologySchema.extend({
   id: z.number(),
   projects: z.array(readProjectSchema),
 });
 
-export { newTechnologySchema, readTechnologySchema };
+export { newTechnologySchema, updatedTechnologySchema, readTechnologySchema };
