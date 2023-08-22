@@ -4,15 +4,19 @@ import { ExperienceType, Stack } from "../../enums";
 import { InvalidIdError } from "../../errors/InvalidIdError";
 import { InvalidEnumValue } from "../../errors/InvalidEnumValue";
 import { requestStorageProperties } from "../../interfaces";
+import { idSchema } from "../../schemas/utils";
 
 export class UtilsMiddlewares {
   static validateDataSchema(
     schema: ZodSchema,
-    propertyToStoreValidatedData: requestStorageProperties
+    propertyToStoreValidatedData?: requestStorageProperties
   ) {
     return (request: Request, response: Response, next: NextFunction) => {
       const validatedData = schema.parse(request.body);
-      request[propertyToStoreValidatedData] = validatedData;
+
+      if (propertyToStoreValidatedData) {
+        request[propertyToStoreValidatedData] = validatedData;
+      }
 
       return next();
     };
@@ -31,6 +35,10 @@ export class UtilsMiddlewares {
     request.recordId = idAsPositiveInteger;
 
     return next();
+  }
+
+  static validateBodyParameterId() {
+    return UtilsMiddlewares.validateDataSchema(idSchema);
   }
 
   static validateValueAsEnum(
