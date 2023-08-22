@@ -3,16 +3,23 @@ import {
   readTechnologySchema,
   updatedTechnologySchema,
 } from "./technologies";
-import { newProjectSchema, readProjectSchema } from "./projects";
 import {
-  newDevelopmentExperience,
-  readDevelopmentExperience,
+  newProjectSchema,
+  readProjectSchema,
+  updatedProjectSchema,
+} from "./projects";
+import {
+  newDevelopmentExperienceSchema,
+  updatedDevelopmentExperienceSchema,
+  readDevelopmentExperienceSchema,
 } from "./developmentExperiences";
 
 export {
-  newDevelopmentExperience,
-  readDevelopmentExperience,
+  newDevelopmentExperienceSchema,
+  updatedDevelopmentExperienceSchema,
+  readDevelopmentExperienceSchema,
   newProjectSchema,
+  updatedProjectSchema,
   readProjectSchema,
   newTechnologySchema,
   updatedTechnologySchema,
