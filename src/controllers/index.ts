@@ -1,9 +1,9 @@
-import { DevelopmentExperienceController } from "./developmentExperiences";
-import { ProjectController } from "./projects";
-import { TechnologyController } from "./technologies";
+import { DevelopmentExperiencesController } from "./developmentExperiences";
+import { ProjectsController } from "./projects";
+import { TechnologiesController } from "./technologies";
 
 export {
-  DevelopmentExperienceController,
-  ProjectController,
-  TechnologyController,
+  DevelopmentExperiencesController,
+  ProjectsController,
+  TechnologiesController,
 };

@@ -1,3 +1,11 @@
+import { DevelopmentExperiencesMiddlewares } from "./developmentExperiences";
+import { ProjectsMiddlewares } from "./projects";
+import { TechnologiesMiddlewares } from "./technologies";
 import { UtilsMiddlewares } from "./utils";
 
-export { UtilsMiddlewares };
+export {
+  UtilsMiddlewares,
+  TechnologiesMiddlewares,
+  ProjectsMiddlewares,
+  DevelopmentExperiencesMiddlewares,
+};

@@ -1,25 +1,25 @@
 import { Router } from "express";
-import { DevelopmentExperienceController } from "../../controllers";
+import { DevelopmentExperiencesController } from "../../controllers";
 import { app } from "../../app";
 
 const developmentExperienceRouter = Router();
 
-developmentExperienceRouter.post("/", DevelopmentExperienceController.create);
+developmentExperienceRouter.post("/", DevelopmentExperiencesController.create);
 
-developmentExperienceRouter.get("/", DevelopmentExperienceController.getAll);
+developmentExperienceRouter.get("/", DevelopmentExperiencesController.getAll);
 developmentExperienceRouter.get(
   "/:type",
-  DevelopmentExperienceController.getByType
+  DevelopmentExperiencesController.getByType
 );
 
 developmentExperienceRouter.patch(
   "/:id",
-  DevelopmentExperienceController.update
+  DevelopmentExperiencesController.update
 );
 
 developmentExperienceRouter.delete(
   "/:id",
-  DevelopmentExperienceController.delete
+  DevelopmentExperiencesController.delete
 );
 
 app.use("/developmentExperiences", developmentExperienceRouter);

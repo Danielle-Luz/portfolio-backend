@@ -1,16 +1,16 @@
 import { Router } from "express";
-import { TechnologyController } from "../../controllers";
+import { TechnologiesController } from "../../controllers";
 import { app } from "../../app";
 
 const technologyRouter = Router();
 
-technologyRouter.post("/", TechnologyController.create);
+technologyRouter.post("/", TechnologiesController.create);
 
-technologyRouter.patch("/:id", TechnologyController.update);
+technologyRouter.patch("/:id", TechnologiesController.update);
 
-technologyRouter.get("/", TechnologyController.getAll);
-technologyRouter.get("/:id", TechnologyController.getOne);
+technologyRouter.get("/", TechnologiesController.getAll);
+technologyRouter.get("/:id", TechnologiesController.getOne);
 
-technologyRouter.delete("/:id", TechnologyController.delete);
+technologyRouter.delete("/:id", TechnologiesController.delete);
 
 app.use("/technologies", technologyRouter);

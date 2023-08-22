@@ -6,21 +6,21 @@ import {
 import { ExperienceType } from "../../enums";
 import { requestStorageProperties } from "../../interfaces";
 
-export class DevelopmentExperienceMiddlewares {
+export class DevelopmentExperiencesMiddlewares {
   static propertyToStoreValidatedData: requestStorageProperties =
     "developmentExperience";
 
   static validateNewDevelopmentExperience() {
     return UtilsMiddlewares.validateDataSchema(
       newDevelopmentExperienceSchema,
-      DevelopmentExperienceMiddlewares.propertyToStoreValidatedData
+      DevelopmentExperiencesMiddlewares.propertyToStoreValidatedData
     );
   }
 
   static validateUpdatedDevelopmentExperience() {
     return UtilsMiddlewares.validateDataSchema(
       updatedDevelopmentExperienceSchema,
-      DevelopmentExperienceMiddlewares.propertyToStoreValidatedData
+      DevelopmentExperiencesMiddlewares.propertyToStoreValidatedData
     );
   }
 

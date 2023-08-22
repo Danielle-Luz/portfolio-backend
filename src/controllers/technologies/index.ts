@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { TechnologyService } from "../../services";
+import { TechnologiesService } from "../../services";
 import { newTechnology, updatedTechnology } from "../../interfaces";
 
-export class TechnologyController {
+export class TechnologiesController {
   static async create(request: Request, response: Response) {
     const { technology: newRecordData } = request;
 
-    const createdTechnology = await TechnologyService.create(
+    const createdTechnology = await TechnologiesService.create(
       newRecordData as newTechnology
     );
 
@@ -16,7 +16,7 @@ export class TechnologyController {
   static async update(request: Request, response: Response) {
     const { recordId, technology: updatedData } = request;
 
-    const updatedTechnology = await TechnologyService.update(
+    const updatedTechnology = await TechnologiesService.update(
       recordId,
       updatedData as updatedTechnology
     );
@@ -25,14 +25,14 @@ export class TechnologyController {
   }
 
   static async getAll(request: Request, response: Response) {
-    const allTechnologiesFound = await TechnologyService.getAll();
+    const allTechnologiesFound = await TechnologiesService.getAll();
 
     return response.status(200).json(allTechnologiesFound);
   }
 
   static async getOne(request: Request, response: Response) {
     const { recordId } = request;
-    const foundTechnology = await TechnologyService.getOne(recordId);
+    const foundTechnology = await TechnologiesService.getOne(recordId);
 
     return response.status(200).json(foundTechnology);
   }
@@ -40,7 +40,7 @@ export class TechnologyController {
   static async delete(request: Request, response: Response) {
     const { recordId } = request;
 
-    await TechnologyService.delete(recordId);
+    await TechnologiesService.delete(recordId);
 
     return response.status(204).send();
   }

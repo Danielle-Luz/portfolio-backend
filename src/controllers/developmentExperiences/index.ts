@@ -1,14 +1,14 @@
 import { Request, Response, response } from "express";
-import { DevelopmentExperienceService } from "../../services";
+import { DevelopmentExperiencesService } from "../../services";
 import { newDevelopmentExperience } from "../../interfaces";
 import { ExperienceType } from "../../enums";
 
-export class DevelopmentExperienceController {
+export class DevelopmentExperiencesController {
   static async create(request: Request, response: Response) {
     const { developmentExperience: newRecordData } = request;
 
     const createdDevelopmentExperience =
-      await DevelopmentExperienceService.create(
+      await DevelopmentExperiencesService.create(
         newRecordData as newDevelopmentExperience
       );
 
@@ -17,7 +17,7 @@ export class DevelopmentExperienceController {
 
   static async getAll(request: Request, response: Response) {
     const allDevelopmentExperiences =
-      await DevelopmentExperienceService.getAll();
+      await DevelopmentExperiencesService.getAll();
 
     return response.status(200).json(allDevelopmentExperiences);
   }
@@ -26,7 +26,7 @@ export class DevelopmentExperienceController {
     const experienceType = request.params.type as ExperienceType;
 
     const foundDevelopmentExperiences =
-      await DevelopmentExperienceService.getByType(experienceType);
+      await DevelopmentExperiencesService.getByType(experienceType);
 
     return response.status(200).json(foundDevelopmentExperiences);
   }
@@ -35,7 +35,7 @@ export class DevelopmentExperienceController {
     const { recordId, developmentExperience: updatedData } = request;
 
     const updatedDevelopmentExperience =
-      await DevelopmentExperienceService.update(recordId, updatedData);
+      await DevelopmentExperiencesService.update(recordId, updatedData);
 
     return response.status(200).json(updatedDevelopmentExperience);
   }
@@ -43,7 +43,7 @@ export class DevelopmentExperienceController {
   static async delete(request: Request, response: Response) {
     const { recordId } = request;
 
-    await DevelopmentExperienceService.delete(recordId);
+    await DevelopmentExperiencesService.delete(recordId);
 
     return response.status(204).send();
   }
