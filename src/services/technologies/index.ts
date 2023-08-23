@@ -2,7 +2,7 @@ import { AppDataSource } from "../../data-source";
 import { Technologies } from "../../entities";
 import { newTechnology, updatedTechnology } from "../../interfaces";
 
-export class TechnologyService {
+export class TechnologiesService {
   static async create(newTechnology: newTechnology) {
     const createdTechnology = await AppDataSource.createQueryBuilder()
       .insert()

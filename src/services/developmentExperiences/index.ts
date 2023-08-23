@@ -6,7 +6,7 @@ import {
   updatedDevelopmentExperience,
 } from "../../interfaces";
 
-export class DevelopmentExperienceService {
+export class DevelopmentExperiencesService {
   static async create(newDevelopmentExperience: newDevelopmentExperience) {
     const createdDevelopmentExperience =
       await AppDataSource.createQueryBuilder()

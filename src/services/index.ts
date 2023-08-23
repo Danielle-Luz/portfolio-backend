@@ -1,5 +1,5 @@
-import { DevelopmentExperienceService } from "./developmentExperiences";
-import { ProjectService } from "./projects";
-import { TechnologyService } from "./technologies";
+import { DevelopmentExperiencesService } from "./developmentExperiences";
+import { ProjectsService } from "./projects";
+import { TechnologiesService } from "./technologies";
 
-export { DevelopmentExperienceService, ProjectService, TechnologyService };
+export { DevelopmentExperiencesService, ProjectsService, TechnologiesService };

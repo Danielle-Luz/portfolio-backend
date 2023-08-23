@@ -3,7 +3,7 @@ import { ExperienceType } from "../../enums";
 
 const experiencesType = Object.values(ExperienceType) as [string, ...string[]];
 
-const newDevelopmentExperience = z.object({
+const newDevelopmentExperienceSchema = z.object({
   name: z.string().max(50),
   type: z.enum(experiencesType),
   company: z.string().max(50).optional().default("Empresa não informada"),
@@ -12,8 +12,14 @@ const newDevelopmentExperience = z.object({
   endDate: z.string().datetime().optional(),
 });
 
-const readDevelopmentExperience = newDevelopmentExperience.extend({
+const updatedDevelopmentExperienceSchema = newDevelopmentExperienceSchema.partial();
+
+const readDevelopmentExperienceSchema = newDevelopmentExperienceSchema.extend({
   id: z.number(),
 });
 
-export { newDevelopmentExperience, readDevelopmentExperience };
+export {
+  newDevelopmentExperienceSchema,
+  updatedDevelopmentExperienceSchema,
+  readDevelopmentExperienceSchema,
+};

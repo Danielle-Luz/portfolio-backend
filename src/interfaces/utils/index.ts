@@ -17,4 +17,9 @@ interface recordId {
   id: number;
 }
 
-export { zodFieldErrors, paginationParams, recordId };
+type requestStorageProperties =
+  | "technology"
+  | "project"
+  | "developmentExperience";
+
+export { zodFieldErrors, paginationParams, recordId, requestStorageProperties };

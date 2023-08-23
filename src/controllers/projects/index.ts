@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
-import { ProjectService } from "../../services";
+import { ProjectsService } from "../../services";
 import { newProject, recordId } from "../../interfaces";
 import { Stack } from "../../enums";
 
-export class ProjectController {
+export class ProjectsController {
   static async create(request: Request, response: Response) {
     const { project: newRecordData } = request;
 
-    const createdProject = await ProjectService.create(
+    const createdProject = await ProjectsService.create(
       newRecordData as newProject
     );
 
@@ -15,7 +15,7 @@ export class ProjectController {
   }
 
   static async getAll(request: Request, response: Response) {
-    const allProjectsFound = await ProjectService.getAll();
+    const allProjectsFound = await ProjectsService.getAll();
 
     return response.status(200).json(allProjectsFound);
   }
@@ -23,7 +23,7 @@ export class ProjectController {
   static async getOne(request: Request, response: Response) {
     const { recordId } = request;
 
-    const foundProject = await ProjectService.getOne(recordId);
+    const foundProject = await ProjectsService.getOne(recordId);
 
     return response.status(200).json(foundProject);
   }
@@ -31,13 +31,13 @@ export class ProjectController {
   static async getByStack(request: Request, response: Response) {
     const stack = request.params.stack as Stack;
 
-    const foundProjects = await ProjectService.getByStack(stack);
+    const foundProjects = await ProjectsService.getByStack(stack);
 
     return response.status(200).json(foundProjects);
   }
 
   static async getHighlights(request: Request, response: Response) {
-    const highlightProjects = await ProjectService.getHighlights();
+    const highlightProjects = await ProjectsService.getHighlights();
 
     return response.status(200).json(highlightProjects);
   }
@@ -45,7 +45,7 @@ export class ProjectController {
   static async getTechnologies(request: Request, response: Response) {
     const { recordId } = request;
 
-    const projectTechnologies = await ProjectService.getTechnologies(recordId);
+    const projectTechnologies = await ProjectsService.getTechnologies(recordId);
 
     return response.status(200).json(projectTechnologies);
   }
@@ -53,7 +53,7 @@ export class ProjectController {
   static async update(request: Request, response: Response) {
     const { recordId, project: updatedData } = request;
 
-    const updatedProject = await ProjectService.update(recordId, updatedData);
+    const updatedProject = await ProjectsService.update(recordId, updatedData);
 
     return response.status(200).json(updatedProject);
   }
@@ -61,7 +61,7 @@ export class ProjectController {
   static async delete(request: Request, response: Response) {
     const { recordId } = request;
 
-    await ProjectService.delete(recordId);
+    await ProjectsService.delete(recordId);
 
     return response.status(204).send();
   }
@@ -71,7 +71,7 @@ export class ProjectController {
 
     const technologyId = request.body.id as number;
 
-    const projectWithTechnology = await ProjectService.addTechnology(
+    const projectWithTechnology = await ProjectsService.addTechnology(
       projectId,
       technologyId
     );

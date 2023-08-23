@@ -13,9 +13,11 @@ const newProjectSchema = z.object({
   highlight: z.boolean().optional().default(false),
 });
 
+const updatedProjectSchema = newProjectSchema.partial();
+
 const readProjectSchema: z.ZodTypeAny = newProjectSchema.extend({
   id: z.number(),
   technologies: z.array(readTechnologySchema),
 });
 
-export { newProjectSchema, readProjectSchema };
+export { newProjectSchema, updatedProjectSchema, readProjectSchema };

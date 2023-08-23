@@ -1,25 +1,37 @@
 import { Router } from "express";
-import { DevelopmentExperienceController } from "../../controllers";
+import { DevelopmentExperiencesController } from "../../controllers";
 import { app } from "../../app";
+import {
+  DevelopmentExperiencesMiddlewares,
+  UtilsMiddlewares,
+} from "../../middlewares";
 
 const developmentExperienceRouter = Router();
 
-developmentExperienceRouter.post("/", DevelopmentExperienceController.create);
+developmentExperienceRouter.post(
+  "/",
+  DevelopmentExperiencesMiddlewares.validateNewDevelopmentExperience,
+  DevelopmentExperiencesController.create
+);
 
-developmentExperienceRouter.get("/", DevelopmentExperienceController.getAll);
+developmentExperienceRouter.get("/", DevelopmentExperiencesController.getAll);
 developmentExperienceRouter.get(
   "/:type",
-  DevelopmentExperienceController.getByType
+  DevelopmentExperiencesMiddlewares.validateValueAsExperienceType,
+  DevelopmentExperiencesController.getByType
 );
 
 developmentExperienceRouter.patch(
   "/:id",
-  DevelopmentExperienceController.update
+  UtilsMiddlewares.validateId,
+  DevelopmentExperiencesMiddlewares.validateUpdatedDevelopmentExperience,
+  DevelopmentExperiencesController.update
 );
 
 developmentExperienceRouter.delete(
   "/:id",
-  DevelopmentExperienceController.delete
+  UtilsMiddlewares.validateId,
+  DevelopmentExperiencesController.delete
 );
 
 app.use("/developmentExperiences", developmentExperienceRouter);

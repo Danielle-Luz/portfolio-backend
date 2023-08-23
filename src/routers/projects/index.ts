@@ -1,20 +1,47 @@
 import { Router } from "express";
-import { ProjectController } from "../../controllers";
+import { ProjectsController } from "../../controllers";
 import { app } from "../../app";
+import { ProjectsMiddlewares, UtilsMiddlewares } from "../../middlewares";
 
 const projectRouter = Router();
 
-projectRouter.post("/", ProjectController.create);
-projectRouter.post("/:id/technologies", ProjectController.addTechnology);
+projectRouter.post(
+  "/",
+  ProjectsMiddlewares.validateNewProject,
+  ProjectsController.create
+);
+projectRouter.post(
+  "/:id/technologies",
+  UtilsMiddlewares.validateId,
+  UtilsMiddlewares.validateBodyParameterId,
+  ProjectsController.addTechnology
+);
 
-projectRouter.get("/", ProjectController.getAll);
-projectRouter.get("/:id", ProjectController.getOne);
-projectRouter.get("/:stack", ProjectController.getByStack);
-projectRouter.get("/highlights", ProjectController.getHighlights);
-projectRouter.get("/technologies", ProjectController.getTechnologies);
+projectRouter.get("/", ProjectsController.getAll);
+projectRouter.get(
+  "/:id",
+  UtilsMiddlewares.validateId,
+  ProjectsController.getOne
+);
+projectRouter.get(
+  "/:stack",
+  UtilsMiddlewares.validateValueAsStack,
+  ProjectsController.getByStack
+);
+projectRouter.get("/highlights", ProjectsController.getHighlights);
+projectRouter.get("/technologies", ProjectsController.getTechnologies);
 
-projectRouter.patch("/:id", ProjectController.update);
+projectRouter.patch(
+  "/:id",
+  UtilsMiddlewares.validateId,
+  ProjectsMiddlewares.validateUpdatedProject,
+  ProjectsController.update
+);
 
-projectRouter.delete("/:id", ProjectController.delete);
+projectRouter.delete(
+  "/:id",
+  UtilsMiddlewares.validateId,
+  ProjectsController.delete
+);
 
 app.use("/projects", projectRouter);

@@ -4,7 +4,12 @@ import {
 } from "./developmentExperiences";
 import { newProject, readProject, updatedProject } from "./projects";
 import { newTechnology, updatedTechnology } from "./technologies";
-import { paginationParams, zodFieldErrors, recordId } from "./utils";
+import {
+  paginationParams,
+  zodFieldErrors,
+  recordId,
+  requestStorageProperties,
+} from "./utils";
 
 export {
   newProject,
@@ -17,4 +22,5 @@ export {
   paginationParams,
   zodFieldErrors,
   recordId,
+  requestStorageProperties,
 };

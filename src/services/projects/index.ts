@@ -2,9 +2,9 @@ import { AppDataSource } from "../../data-source";
 import { Projects } from "../../entities";
 import { Stack } from "../../enums";
 import { newProject, updatedProject } from "../../interfaces";
-import { TechnologyService } from "../technologies";
+import { TechnologiesService } from "../technologies";
 
-export class ProjectService {
+export class ProjectsService {
   static async create(project: newProject) {
     const createdProject = await AppDataSource.createQueryBuilder()
       .insert()
@@ -84,14 +84,14 @@ export class ProjectService {
   }
 
   static async addTechnology(projectId: number, technologyId: number) {
-    const foundProject = await ProjectService.getOne(projectId);
-    const foundTechnology = await TechnologyService.getOne(technologyId);
+    const foundProject = await ProjectsService.getOne(projectId);
+    const foundTechnology = await TechnologiesService.getOne(technologyId);
 
     await AppDataSource.createQueryBuilder()
       .relation(Projects, "technologies")
       .of(foundProject)
       .add(foundTechnology);
 
-    return await ProjectService.getOne(projectId);
+    return await ProjectsService.getOne(projectId);
   }
 }
