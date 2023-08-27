@@ -206,6 +206,21 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 ]
 ```
 
+### _Casos de erro_
+
+- **Envio**: Uma request contento uma stack inválida na url.
+- **Retorno**: Uma mensagem indicando que a stack na url é inválida.
+- **URL da requisição**: `/projects/stack/aaa`.
+- **Status**: 400 BAD REQUEST.
+
+**Exemplo de retorno**:
+
+```json
+{
+	"message": "The param stack should have one of these values: Front-end, Back-end, Full-stack"
+}
+```
+
 ### **GET `/projects/highlights`**
 
 ### _Regras de negócio_
@@ -420,6 +435,50 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 }
 ```
 
+- **Envio**: Uma request contento um id inválido na url.
+- **Retorno**: Uma mensagem indicando que o id na url é inválida.
+- **URL da requisição**: `/projects/aaa/technologies`.
+- **Status**: 400 BAD REQUEST.
+
+**Exemplo de envio**:
+
+```json
+{
+  "id": 1
+}
+```
+
+**Exemplo de retorno**:
+
+```json
+{
+	"message": "The id should be a integer number"
+}
+```
+
+- **Envio**: Um objeto contendo um id inválido.
+- **Retorno**: Uma mensagem indicando que o id no corpo da requisição é inválido.
+- **URL da requisição**: `/projects/1/technologies`.
+- **Status**: 400 BAD REQUEST.
+
+**Exemplo de envio**:
+
+```json
+{
+  "id": "aaa"
+}
+```
+
+**Exemplo de retorno**:
+
+```json
+{
+	"id": [
+		"Expected number, received string"
+	]
+}
+```
+
 - **Envio**: Um objeto contendo o id de uma tecnologia não existente.
 - **Retorno**: Uma mensagem indicando que o id não foi encontrado.
 - **URL da requisição**: `/projects/1/technologies`.
@@ -576,6 +635,19 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 }
 ```
 
+- **Envio**: Uma request contento um id inválido na url.
+- **Retorno**: Uma mensagem indicando que o id na url é inválida.
+- **URL da requisição**: `/projects/aaa`.
+- **Status**: 400 BAD REQUEST.
+
+**Exemplo de retorno**:
+
+```json
+{
+	"message": "The id should be a integer number"
+}
+```
+
 ### **GET `/developmentExperiences`**
 
 ### _Regras de negócio_
@@ -609,13 +681,13 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 ]
 ```
 
-### **GET `/developmentExperiences/:type`**
+### **GET `/developmentExperiences/type/:type`**
 
 ### _Regras de negócio_
 
 - Caso de sucesso:
   - **Retorno**: Uma lista de objetos cujos registros têm o tipo especificado na rota.
-  - **Rota da requisição**: `/developmentExperiences/Curso`.
+  - **Rota da requisição**: `/developmentExperiences/type/Curso`.
   - **Status**: 200 OK.
 
 **Exemplo de retorno**:
@@ -632,6 +704,21 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 		"endDate": null
 	}
 ]
+```
+
+### _Casos de erro_
+
+- **Envio**: Uma request contento um tipo inválido na url.
+- **Retorno**: Uma mensagem indicando que o tipo na url é inválido.
+- **URL da requisição**: `/developmentExperiences/type/aaa`.
+- **Status**: 400 BAD REQUEST.
+
+**Exemplo de retorno**:
+
+```json
+{
+	"message": "The param type should have one of these values: Acadêmica, Curso, Voluntariado, Emprego"
+}
 ```
 
 ### **POST `/developmentExperiences`**
@@ -667,6 +754,8 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
   "endDate": null,
 }
 ```
+
+### _Casos de erro_
 
 - **Envio**: Um objeto contendo dados em formato inválido.
 - **Retorno**: Um objeto indicando em quais campos os dados têm formato inválido.
@@ -731,6 +820,29 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 }
 ```
 
+### _Casos de erro_
+
+- **Envio**: Uma request contento um id inválido na url.
+- **Retorno**: Uma mensagem indicando que o id na url é inválida.
+- **URL da requisição**: `/developmentExperiences/aaa`.
+- **Status**: 400 BAD REQUEST.
+
+**Exemplo de envio**:
+
+```json
+{
+  "type": "Emprego"
+}
+```
+
+**Exemplo de retorno**:
+
+```json
+{
+	"message": "The id should be a integer number"
+}
+```
+
 - **Envio**: Um objeto contendo dados em formato inválido.
 - **Retorno**: Um objeto indicando em quais campos os dados têm formato inválido.
 - **Status**: 400 BAD REQUEST.
@@ -784,6 +896,20 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
   - **Status**: 204 NO CONTENT.
 
 ### _Casos de erro_
+
+- **Envio**: Uma request contento um id inválido na url.
+- **Retorno**: Uma mensagem indicando que o id na url é inválida.
+- **URL da requisição**: `//developmentExperiences/aaa`.
+- **Status**: 400 BAD REQUEST.
+
+**Exemplo de retorno**:
+
+```json
+{
+	"message": "The id should be a integer number"
+}
+```
+
 
 - Não é possível excluir uma experiência de desenvolvimento usando um ID não existente na URL:
   - **Rota**: `/developmentExperiences/100000000`
@@ -851,6 +977,20 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 }
 ```
 
+### _Casos de erro_
+- **Envio**: Uma request contento um id inválido na url.
+- **Retorno**: Uma mensagem indicando que o id na url é inválida.
+- **URL da requisição**: `/technologies/aaa`.
+- **Status**: 400 BAD REQUEST.
+
+**Exemplo de retorno**:
+
+```json
+{
+	"message": "The id should be a integer number"
+}
+```
+
 - Não é possível buscar uma tecnologia usando um ID não existente na URL:
   - **Rota**: `/technologies/100000000`
   - **Retorno**: Um objeto contendo uma mensagem de erro.
@@ -893,6 +1033,8 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 	"knowledgeLevel": "Iniciante"
 }
 ```
+
+### _Casos de erro_
 
 - **Envio**: Um objeto contendo dados em formato inválido.
 - **Retorno**: Um objeto indicando em quais campos os dados têm formato inválido.
@@ -947,6 +1089,30 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
   "name": "ReactJS",
   "stack": "Front-end",
   "knowledgeLevel": "Avançado"
+}
+```
+
+### _Casos de erro_
+
+- **Envio**: Uma request contento um id inválido na url.
+- **Retorno**: Uma mensagem indicando que o id na url é inválida.
+- **URL da requisição**: `/technologies/aaa`.
+- **Status**: 400 BAD REQUEST.
+
+**Exemplo de envio**:
+
+```json
+{
+  "knowledgeLevel": "Intermediário"
+}
+
+```
+
+**Exemplo de retorno**:
+
+```json
+{
+	"message": "The id should be a integer number"
 }
 ```
 
@@ -1009,6 +1175,19 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
   - **Status**: 204 NO CONTENT.
 
 ### _Casos de erro_
+
+- **Envio**: Uma request contento um id inválido na url.
+- **Retorno**: Uma mensagem indicando que o id na url é inválida.
+- **URL da requisição**: `/technologies/aaa`.
+- **Status**: 400 BAD REQUEST.
+
+**Exemplo de retorno**:
+
+```json
+{
+	"message": "The id should be a integer number"
+}
+```
 
 - Não é possível excluir uma tecnologia usando um ID não existente na URL:
   - **Rota**: `/technologies/100000000`
