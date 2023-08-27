@@ -3,10 +3,10 @@ import { ProjectsController } from "../../controllers";
 import { app } from "../../app";
 import { ProjectsMiddlewares, UtilsMiddlewares } from "../../middlewares";
 
-const projectRouter = Router();
+export const projectRouter = Router();
 
 projectRouter.post(
-  "/",
+  "",
   ProjectsMiddlewares.validateNewProject,
   ProjectsController.create
 );
@@ -17,7 +17,7 @@ projectRouter.post(
   ProjectsController.addTechnology
 );
 
-projectRouter.get("/", ProjectsController.getAll);
+projectRouter.get("", ProjectsController.getAll);
 projectRouter.get(
   "/:id",
   UtilsMiddlewares.validateId,
@@ -43,5 +43,3 @@ projectRouter.delete(
   UtilsMiddlewares.validateId,
   ProjectsController.delete
 );
-
-app.use("/projects", projectRouter);
