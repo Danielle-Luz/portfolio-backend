@@ -10,21 +10,21 @@ export const developmentExperienceRouter = Router();
 
 developmentExperienceRouter.post(
   "",
-  DevelopmentExperiencesMiddlewares.validateNewDevelopmentExperience,
+  DevelopmentExperiencesMiddlewares.validateNewDevelopmentExperience(),
   DevelopmentExperiencesController.create
 );
 
 developmentExperienceRouter.get("", DevelopmentExperiencesController.getAll);
 developmentExperienceRouter.get(
   "/:type",
-  DevelopmentExperiencesMiddlewares.validateValueAsExperienceType,
+  DevelopmentExperiencesMiddlewares.validateValueAsExperienceType(),
   DevelopmentExperiencesController.getByType
 );
 
 developmentExperienceRouter.patch(
   "/:id",
   UtilsMiddlewares.validateId,
-  DevelopmentExperiencesMiddlewares.validateUpdatedDevelopmentExperience,
+  DevelopmentExperiencesMiddlewares.validateUpdatedDevelopmentExperience(),
   DevelopmentExperiencesController.update
 );
 
