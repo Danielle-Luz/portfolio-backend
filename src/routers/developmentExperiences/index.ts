@@ -6,15 +6,15 @@ import {
   UtilsMiddlewares,
 } from "../../middlewares";
 
-const developmentExperienceRouter = Router();
+export const developmentExperienceRouter = Router();
 
 developmentExperienceRouter.post(
-  "/",
+  "",
   DevelopmentExperiencesMiddlewares.validateNewDevelopmentExperience,
   DevelopmentExperiencesController.create
 );
 
-developmentExperienceRouter.get("/", DevelopmentExperiencesController.getAll);
+developmentExperienceRouter.get("", DevelopmentExperiencesController.getAll);
 developmentExperienceRouter.get(
   "/:type",
   DevelopmentExperiencesMiddlewares.validateValueAsExperienceType,
@@ -33,5 +33,3 @@ developmentExperienceRouter.delete(
   UtilsMiddlewares.validateId,
   DevelopmentExperiencesController.delete
 );
-
-app.use("/developmentExperiences", developmentExperienceRouter);
