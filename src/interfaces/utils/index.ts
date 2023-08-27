@@ -4,13 +4,8 @@ interface zodFieldErrors {
   [x: symbol]: string[] | undefined;
 }
 
-interface paginationParams {
-  page: number;
-  perPage: number;
-  order: string;
-  sort: string;
-  prevPage: string | null;
-  nextPage: string | null;
+interface messageData {
+  message: string;
 }
 
 interface recordId {
@@ -22,4 +17,4 @@ type requestStorageProperties =
   | "project"
   | "developmentExperience";
 
-export { zodFieldErrors, paginationParams, recordId, requestStorageProperties };
+export { zodFieldErrors, messageData, recordId, requestStorageProperties };

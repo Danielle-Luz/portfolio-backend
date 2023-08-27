@@ -1,19 +1,27 @@
 import { AppDataSource } from "../../data-source";
 import { Projects } from "../../entities";
 import { Stack } from "../../enums";
+import { RecordNotFoundError } from "../../errors";
 import { newProject, updatedProject } from "../../interfaces";
 import { TechnologiesService } from "../technologies";
+import { handleRecordAlreadyExistsError } from "../utils";
 
 export class ProjectsService {
-  static async create(project: newProject) {
-    const createdProject = await AppDataSource.createQueryBuilder()
-      .insert()
-      .into(Projects)
-      .values(project)
-      .returning("*")
-      .execute();
+  static recordType: string = "projects";
 
-    return createdProject.generatedMaps[0];
+  static async create(project: newProject) {
+    try {
+      const createdProject = await AppDataSource.createQueryBuilder()
+        .insert()
+        .into(Projects)
+        .values(project)
+        .returning("*")
+        .execute();
+      return createdProject.generatedMaps[0];
+    } catch (error) {
+      const errorMessage = "A project with this name was already created";
+      handleRecordAlreadyExistsError(error, errorMessage);
+    }
   }
 
   static async getAll() {
@@ -29,7 +37,11 @@ export class ProjectsService {
       .from(Projects, "projects")
       .where("projects.id = :id", { id })
       .leftJoinAndSelect("projects.technologies", "technologies")
-      .getOneOrFail();
+      .getOneOrFail()
+      .then()
+      .catch(() => {
+        throw new RecordNotFoundError(ProjectsService.recordType, id);
+      });
   }
 
   static async getByStack(stack: Stack) {
@@ -62,14 +74,24 @@ export class ProjectsService {
   }
 
   static async update(id: number, updatedProject: updatedProject) {
-    const projectAfterUpdate = await AppDataSource.createQueryBuilder()
-      .update(Projects)
-      .set(updatedProject)
-      .where("id = :id", { id })
-      .returning("*")
-      .execute();
+    try {
+      const projectAfterUpdate = await AppDataSource.createQueryBuilder()
+        .update(Projects)
+        .set(updatedProject)
+        .where("id = :id", { id })
+        .returning("*")
+        .execute();
 
-    return projectAfterUpdate.raw[0];
+      const wasNoProjectUpdated = projectAfterUpdate.affected === 0;
+      if (wasNoProjectUpdated) {
+        throw new RecordNotFoundError(ProjectsService.recordType, id);
+      }
+
+      return projectAfterUpdate.raw[0];
+    } catch (error) {
+      const errorMessage = "A project with this name was already created";
+      handleRecordAlreadyExistsError(error, errorMessage);
+    }
   }
 
   static async delete(id: number) {
@@ -80,7 +102,10 @@ export class ProjectsService {
       .where("projects.id = :id", { id })
       .execute();
 
-    return deletedProject.affected;
+    const wasNoProjectDeleted = deletedProject.affected === 0;
+    if (wasNoProjectDeleted) {
+      throw new RecordNotFoundError(ProjectsService.recordType, id);
+    }
   }
 
   static async addTechnology(projectId: number, technologyId: number) {
@@ -90,7 +115,12 @@ export class ProjectsService {
     await AppDataSource.createQueryBuilder()
       .relation(Projects, "technologies")
       .of(foundProject)
-      .add(foundTechnology);
+      .add(foundTechnology)
+      .then()
+      .catch((error) => {
+        const errorMessage = `The technology with id ${technologyId} was already added in this project`;
+        handleRecordAlreadyExistsError(error, errorMessage);
+      });
 
     return await ProjectsService.getOne(projectId);
   }

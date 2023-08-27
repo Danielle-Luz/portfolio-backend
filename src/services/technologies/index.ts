@@ -1,8 +1,11 @@
 import { AppDataSource } from "../../data-source";
 import { Technologies } from "../../entities";
+import { RecordNotFoundError } from "../../errors";
 import { newTechnology, updatedTechnology } from "../../interfaces";
 
 export class TechnologiesService {
+  static recordType: string = "technologies";
+
   static async create(newTechnology: newTechnology) {
     const createdTechnology = await AppDataSource.createQueryBuilder()
       .insert()
@@ -22,6 +25,11 @@ export class TechnologiesService {
       .returning("*")
       .execute();
 
+    const wasNoTechnologyUpdated = technologyAfterUpdate.affected === 0;
+    if (wasNoTechnologyUpdated) {
+      throw new RecordNotFoundError(TechnologiesService.recordType, id);
+    }
+
     return technologyAfterUpdate.raw[0];
   }
 
@@ -36,7 +44,11 @@ export class TechnologiesService {
       .select("technologies")
       .from(Technologies, "technologies")
       .where("technologies.id = :id", { id })
-      .getOneOrFail();
+      .getOneOrFail()
+      .then()
+      .catch(() => {
+        throw new RecordNotFoundError(TechnologiesService.recordType, id);
+      });
   }
 
   static async delete(id: number) {
@@ -46,6 +58,9 @@ export class TechnologiesService {
       .where("technologies.id = :id", { id })
       .execute();
 
-    return deletedTechnology.affected;
+    const wasNoTechnologyDeleted = deletedTechnology.affected === 0;
+    if (wasNoTechnologyDeleted) {
+      throw new RecordNotFoundError(TechnologiesService.recordType, id);
+    }
   }
 }

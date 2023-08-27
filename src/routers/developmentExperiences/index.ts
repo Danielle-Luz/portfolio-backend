@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { DevelopmentExperiencesController } from "../../controllers";
-import { app } from "../../app";
 import {
   DevelopmentExperiencesMiddlewares,
   UtilsMiddlewares,

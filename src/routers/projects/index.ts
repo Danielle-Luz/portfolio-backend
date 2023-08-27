@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { ProjectsController } from "../../controllers";
-import { app } from "../../app";
 import { ProjectsMiddlewares, UtilsMiddlewares } from "../../middlewares";
 
 export const projectRouter = Router();
@@ -18,18 +17,22 @@ projectRouter.post(
 );
 
 projectRouter.get("", ProjectsController.getAll);
+projectRouter.get("/highlights", ProjectsController.getHighlights);
+projectRouter.get(
+  "/stack/:stack",
+  UtilsMiddlewares.validateValueAsStack(),
+  ProjectsController.getByStack
+);
 projectRouter.get(
   "/:id",
   UtilsMiddlewares.validateId,
   ProjectsController.getOne
 );
 projectRouter.get(
-  "/:stack",
-  UtilsMiddlewares.validateValueAsStack,
-  ProjectsController.getByStack
+  "/:id/technologies",
+  UtilsMiddlewares.validateId,
+  ProjectsController.getTechnologies
 );
-projectRouter.get("/highlights", ProjectsController.getHighlights);
-projectRouter.get("/technologies", ProjectsController.getTechnologies);
 
 projectRouter.patch(
   "/:id",

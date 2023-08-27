@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "./AppError";
 import { ZodError, ZodErrorMap } from "zod";
-import { zodFieldErrors } from "../interfaces";
+import { messageData, zodFieldErrors } from "../interfaces";
 
 export function errorHandler(
   error: Error,
@@ -9,12 +9,8 @@ export function errorHandler(
   response: Response,
   next: NextFunction
 ) {
-  if (!error) {
-    return next();
-  }
-  
   let statusCode = 500;
-  let errorMessage: zodFieldErrors | string = error.message;
+  let errorMessage: zodFieldErrors | messageData = { message: error.message };
 
   if (error instanceof AppError) {
     statusCode = error.statusCode;
