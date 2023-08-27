@@ -7,7 +7,7 @@ const knowledgeLevels = Object.values(KnowledgeLevel) as [string, ...string[]];
 
 const newTechnologySchema = z.object({
   name: z.string().max(40),
-  type: z.enum(stacks),
+  stack: z.enum(stacks),
   knowledgeLevel: z
     .enum(knowledgeLevels)
     .optional()
