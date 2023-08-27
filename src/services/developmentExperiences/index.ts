@@ -1,12 +1,15 @@
 import { AppDataSource } from "../../data-source";
 import { DevelopmentExperiences } from "../../entities";
 import { ExperienceType } from "../../enums";
+import { RecordNotFoundError } from "../../errors";
 import {
   newDevelopmentExperience,
   updatedDevelopmentExperience,
 } from "../../interfaces";
 
 export class DevelopmentExperiencesService {
+  static recordType: string = "development experiences";
+
   static async create(newDevelopmentExperience: newDevelopmentExperience) {
     const createdDevelopmentExperience =
       await AppDataSource.createQueryBuilder()
@@ -45,6 +48,14 @@ export class DevelopmentExperiencesService {
         .returning("*")
         .execute();
 
+    const wasNoRecordUpdated = developmentExperienceAfterUpdate.affected === 0;
+    if (wasNoRecordUpdated) {
+      throw new RecordNotFoundError(
+        DevelopmentExperiencesService.recordType,
+        id
+      );
+    }
+
     return developmentExperienceAfterUpdate.raw[0];
   }
 
@@ -56,6 +67,12 @@ export class DevelopmentExperiencesService {
         .where("id = :id", { id })
         .execute();
 
-    return deletedDevelopmentExperience.affected;
+    const wasNoRecordDeleted = deletedDevelopmentExperience.affected === 0;
+    if (wasNoRecordDeleted) {
+      throw new RecordNotFoundError(
+        DevelopmentExperiencesService.recordType,
+        id
+      );
+    }
   }
 }
