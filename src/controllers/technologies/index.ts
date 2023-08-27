@@ -27,7 +27,7 @@ export class TechnologiesController {
   static async getAll(request: Request, response: Response) {
     const allTechnologiesFound = await TechnologiesService.getAll();
 
-    return response.status(200).json(allTechnologiesFound);
+    return response.status(200).send(allTechnologiesFound);
   }
 
   static async getOne(request: Request, response: Response) {

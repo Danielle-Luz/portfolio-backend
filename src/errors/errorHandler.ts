@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { AppError } from "./AppError";
 import { ZodError, ZodErrorMap } from "zod";
 import { zodFieldErrors } from "../interfaces";
@@ -6,8 +6,13 @@ import { zodFieldErrors } from "../interfaces";
 export function errorHandler(
   error: Error,
   request: Request,
-  response: Response
+  response: Response,
+  next: NextFunction
 ) {
+  if (!error) {
+    return next();
+  }
+  
   let statusCode = 500;
   let errorMessage: zodFieldErrors | string = error.message;
 
