@@ -39,7 +39,7 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 | SGBD       | MER                                             |
 | ---------- | ----------------------------------------------- |
-| PostgreSQL | [Diagrama MER da base de dados](movies-mer.png) |
+| PostgreSQL | [Diagrama MER da base de dados](MER.png) |
 
 ### Tabelas
 
