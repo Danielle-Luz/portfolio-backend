@@ -17,7 +17,6 @@ export class ProjectsService {
         .values(project)
         .returning("*")
         .execute();
-
       return createdProject.generatedMaps[0];
     } catch (error) {
       const errorMessage = "A project with this name was already created";
@@ -83,7 +82,8 @@ export class ProjectsService {
         .returning("*")
         .execute();
 
-      if (projectAfterUpdate.affected === 0) {
+      const wasNoProjectUpdated = projectAfterUpdate.affected === 0;
+      if (wasNoProjectUpdated) {
         throw new RecordNotFoundError(ProjectsService.recordType, id);
       }
 
@@ -102,7 +102,8 @@ export class ProjectsService {
       .where("projects.id = :id", { id })
       .execute();
 
-    if (deletedProject.affected === 0) {
+    const wasNoProjectDeleted = deletedProject.affected === 0;
+    if (wasNoProjectDeleted) {
       throw new RecordNotFoundError(ProjectsService.recordType, id);
     }
   }
