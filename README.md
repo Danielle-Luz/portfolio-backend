@@ -28,9 +28,9 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 <h2 id="tecnologias">Tecnologias</h2>
 
-- Stackscript
+- Typescript
 - Express
-- StackORM
+- TypeORM
 - NodeJS
 - PostgreSQL
 - Express Async Errors
@@ -46,7 +46,6 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 - `projects`
 - `developmentExperiences`
 - `technologies`
-- `projectsTechnologies`
 
 ### Especificações da tabela `projects`
 
@@ -55,9 +54,9 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
   - **id**: inteiro, sequencial e chave primária.
   - **name**: caractere, tamanho máximo de 20, único e obrigatório.
   - **description**: texto e obrigatório.
-  - **stack**: caractere, tamanho máximo de 15 caracteres e obrigatório, os valores possíveis são: "Front-end", "Back-end" e "Full-Stack".
-  - **coverImage**: caractere, tamanho máximo de 100 caracteres e obrigatório.
-  - **url**: caractere, tamanho máximo de 100 caracteres e obrigatório.
+  - **stack**: caractere, os valores possíveis são: "Front-end", "Back-end" e "Full-Stack".
+  - **coverImage**: texto e obrigatório.
+  - **url**: texto e obrigatório.
   - **highlight**: boolean, opcional e com valor default false.
 
 ### Especificações da tabela `developmentExperiences`
@@ -65,12 +64,12 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 - **Nome da tabela**: developmentExperiences
 - **Colunas da tabela**:
   - **id**: inteiro, sequencial e chave primária.
-  - **type**: caractere, tamanho máximo de 15 e obrigatório, os valores possíveis são: "Educação", "Emprego" e "Voluntariado".
+  - **type**: caractere, os valores possíveis são: "Acadêmica", "Curso", "Emprego" e "Voluntariado".
   - **name**: caractere, tamanho máximo de 50 e obrigatório.
   - **company**: caractere, tamanho máximo de 50 caracteres e opcional, tendo como valor default: "Empresa não informada".
   - **description**: texto e obrigatório.
-  - **startDate**: data e opcional.
-  - **endDate**: data e opcional.
+  - **startDate**: datetime e opcional.
+  - **endDate**: datetime e opcional.
 
 ### Especificações da tabela `technologies`
 
@@ -78,8 +77,8 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 - **Colunas da tabela**:
   - **id**: inteiro, sequencial e chave primária.
   - **name**: caractere, tamanho máximo de 40 e obrigatório.
-  - **stack**: caractere, tamanho máximo de 15 caracteres e obrigatório, os valores possíveis são: "Front-end", "Back-end" e "Full-Stack".
-  - **knowledgeLevel**: caractere, tamanho máximo de 15 caracteres e opcional, os valores possíveis são: "Iniciante", "Intermediário" e "Avançado", o valor default é "Iniciante".
+  - **stack**: caractere, obrigatório, os valores possíveis são: "Front-end", "Back-end" e "Full-Stack".
+  - **knowledgeLevel**: caractere, opcional, os valores possíveis são: "Iniciante", "Intermediário" e "Avançado", o valor default é "Iniciante".
 
 ### Especificações da tabela `projectsTechnologies`
 
@@ -93,16 +92,20 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 | Método | Endpoint                    | Responsabilidade                                                                                                 |
 | ------ | --------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | GET    | /projects                   | Lista todos os projetos.                                                                                         |
-| GET    | /projects/:stack      | Retorna um array de projetos de acordo com o tipo de projeto indicado: highlight, frontend, backend ou fullStack |
+| GET    | /projects/stack/:stack      | Retorna um array com os projetos que possuem a stack indicada no endpoint, os valores possíveis são: Front-end, Back-end ou Full-Stack |
+| GET    | /projects/highlights      | Retorna um array com todos os projetos com o campo highlight com o valor true |
 | POST   | /projects                   | Criação de projeto.                                                                                              |
-| POST   | /projects/:id/technologies  | Relaciona as tecnologias no corpo da requisição com o projeto.                                                   |
+| POST   | /projects/:id/technologies  | Relaciona a tecnologia com o id indicado no corpo da requisição com o projeto cujo id foi indicado no endpoint.                                                   |
+| GET  | /projects/:id               | Retorna o projeto com o id indicado                                                                                  |
 | PATCH  | /projects/:id               | Atualiza o projeto passado por id.                                                                                 |
 | DELETE | /projects/:id               | Deleta o projeto passado por id.                                                                                   |
 | GET    | /developmentExperiences     | Lista todas as experiências de desenvolvimento.                                                                  |
+| GET    | /developmentExperiences/:type     | Lista todas as experiências de desenvolvimento com o tipo indicado no endpoint.                                                                  |
 | POST   | /developmentExperiences     | Criação de uma experiência de desenvolvimento.                                                                   |
 | PATCH  | /developmentExperiences/:id | Atualiza a experiência de desenvolvimento passada por id.                                                        |
 | DELETE | /developmentExperiences/:id | Deleta a experiência de desenvolvimento passada por id.                                                          |
 | GET    | /technologies               | Lista todas as tecnologias.                                                                                      |
+| GET    | /technologies/:id               | Retorna a tecnologia cujo id foi indicado no endpoint.                                                                                      |
 | POST   | /technologies               | Criação de uma tecnologia.                                                                                       |
 | PATCH  | /technologies/:id           | Atualiza a tecnologia passada por id.                                                                            |
 | DELETE | /technologies/:id           | Deleta a tecnologia passada por id.                                                                              |
