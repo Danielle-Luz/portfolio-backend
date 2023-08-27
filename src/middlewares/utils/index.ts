@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import { ZodSchema } from "zod";
 import { ExperienceType, Stack } from "../../enums";
-import { InvalidIdError } from "../../errors/InvalidIdError";
-import { InvalidEnumValue } from "../../errors/InvalidEnumValue";
+import { InvalidIdError } from "../../errors";
+import { InvalidEnumValue } from "../../errors";
 import { requestStorageProperties } from "../../interfaces";
 import { idSchema } from "../../schemas/utils";
 

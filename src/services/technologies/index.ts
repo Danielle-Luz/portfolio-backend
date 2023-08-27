@@ -1,6 +1,6 @@
 import { AppDataSource } from "../../data-source";
 import { Technologies } from "../../entities";
-import { RecordNotFoundError } from "../../errors/RecordNotFoundError";
+import { RecordNotFoundError } from "../../errors";
 import { newTechnology, updatedTechnology } from "../../interfaces";
 
 export class TechnologiesService {

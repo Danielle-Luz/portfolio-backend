@@ -1,10 +1,13 @@
 import { AppDataSource } from "../../data-source";
 import { Projects } from "../../entities";
 import { Stack } from "../../enums";
+import { RecordNotFoundError } from "../../errors";
 import { newProject, updatedProject } from "../../interfaces";
 import { TechnologiesService } from "../technologies";
 
 export class ProjectsService {
+  static recordType: string = "projects";
+
   static async create(project: newProject) {
     const createdProject = await AppDataSource.createQueryBuilder()
       .insert()
@@ -29,7 +32,11 @@ export class ProjectsService {
       .from(Projects, "projects")
       .where("projects.id = :id", { id })
       .leftJoinAndSelect("projects.technologies", "technologies")
-      .getOneOrFail();
+      .getOneOrFail()
+      .then()
+      .catch(() => {
+        throw new RecordNotFoundError(ProjectsService.recordType, id);
+      });
   }
 
   static async getByStack(stack: Stack) {
