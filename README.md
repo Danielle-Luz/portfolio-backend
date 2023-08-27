@@ -1,8 +1,8 @@
 <h1 align="center">Portfolio Back-end</h1>
 
 <p align="center">
-    <img alt="Badge indicando que o projeto foi criado em junho de 2023" src="https://img.shields.io/badge/Data%20de%20cria%C3%A7%C3%A3o-Junho%2F2023-blue">
-    <img alt="Badge indicando que o status do projeto é 'developing'" src="https://img.shields.io/badge/Status-Developing-yellow">
+    <img alt="Badge indicando que o projeto foi criado em junho de 2023" src="https://img.shields.io/badge/Data%20de%20cria%C3%A7%C3%A3o-Julho%2F2023-blue">
+    <img alt="Badge indicando que o status do projeto é 'finished'" src="https://img.shields.io/badge/Status-Finished-green">
 </p>
 
 ## Índice
