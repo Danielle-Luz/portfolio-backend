@@ -39,7 +39,11 @@ export class TechnologiesService {
       .select("technologies")
       .from(Technologies, "technologies")
       .where("technologies.id = :id", { id })
-      .getOneOrFail();
+      .getOneOrFail()
+      .then()
+      .catch(() => {
+        throw new RecordNotFoundError(TechnologiesService.recordType, id);
+      });
   }
 
   static async delete(id: number) {
