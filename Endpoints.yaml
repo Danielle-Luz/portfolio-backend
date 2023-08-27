@@ -1,0 +1,576 @@
+_type: export
+__export_format: 4
+__export_date: 2023-08-27T16:20:27.010Z
+__export_source: insomnia.desktop.app:v2023.5.6
+resources:
+  - _id: req_800b74285ade4bfb8e2cc564e03f0206
+    parentId: fld_b5a2e8fce83c4294bdb61cd7a65b5127
+    modified: 1693141566155
+    created: 1693141510534
+    url: "{{ _.base_url }}/projects"
+    name: Get all
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: Insomnia/2023.5.6
+    authentication: {}
+    metaSortKey: -1693141510534
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_b5a2e8fce83c4294bdb61cd7a65b5127
+    parentId: wrk_418174c7347b4f1299da384eab699ca3
+    modified: 1693136887389
+    created: 1692762257922
+    name: projects
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1692762257922
+    _type: request_group
+  - _id: wrk_418174c7347b4f1299da384eab699ca3
+    parentId: null
+    modified: 1692762218119
+    created: 1692762218119
+    name: Portfolio
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_5a254d6ec05648b39a491f40446f81fe
+    parentId: fld_b5a2e8fce83c4294bdb61cd7a65b5127
+    modified: 1693147430709
+    created: 1693141714225
+    url: "{{ _.base_url }}/projects/11"
+    name: Get one
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: Insomnia/2023.5.6
+    authentication: {}
+    metaSortKey: -1693138849905.625
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_17ef3ad3cfcb488f9c7c044268d8f6d4
+    parentId: fld_b5a2e8fce83c4294bdb61cd7a65b5127
+    modified: 1693142126721
+    created: 1693142087216
+    url: "{{ _.base_url }}/projects/highlights"
+    name: Get highlights
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: Insomnia/2023.5.6
+    authentication: {}
+    metaSortKey: -1693136189277.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_0b8483171ef64333a6508befe9ae0ce1
+    parentId: fld_b5a2e8fce83c4294bdb61cd7a65b5127
+    modified: 1693147469822
+    created: 1693142102396
+    url: "{{ _.base_url }}/projects/1/technologies"
+    name: Get technologies
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: Insomnia/2023.5.6
+    authentication: {}
+    metaSortKey: -1693133528648.875
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_3bfabf6cb1e849ccba67a75c60143670
+    parentId: fld_b5a2e8fce83c4294bdb61cd7a65b5127
+    modified: 1693144253323
+    created: 1693141799571
+    url: "{{ _.base_url }}/projects/stack/Back-end"
+    name: Get by stack
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: Insomnia/2023.5.6
+    authentication: {}
+    metaSortKey: -1693125546763.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_ede288b5e4184e3c898348e720375666
+    parentId: fld_b5a2e8fce83c4294bdb61cd7a65b5127
+    modified: 1693147536325
+    created: 1693141600307
+    url: "{{ _.base_url }}/projects"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "name": "Another project name",
+          "description": "This is a sample project.",
+          "stack": "Front-end",
+          "coverImage": "https://example.com/cover.jpg",
+          "url": "https://example.com/myproject",
+          "highlight": true
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: Insomnia/2023.5.6
+    authentication: {}
+    metaSortKey: -1693120225507
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_9a81d22e8750427aa7dba9030a1f5c43
+    parentId: fld_b5a2e8fce83c4294bdb61cd7a65b5127
+    modified: 1693148514879
+    created: 1693141673084
+    url: "{{ _.base_url }}/projects/11/technologies"
+    name: Add technology
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"id": 21
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: Insomnia/2023.5.6
+    authentication: {}
+    metaSortKey: -1693109582993.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_97acb7eb03a54d94b2337aed99d76bf2
+    parentId: fld_b5a2e8fce83c4294bdb61cd7a65b5127
+    modified: 1693147888805
+    created: 1693141923273
+    url: "{{ _.base_url }}/projects/11"
+    name: Update
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |
+        {
+        	"name": "Nome do projeto",
+        	"stack": "Front-end",
+        	"description": "Descrição aqui",
+          "highlight": true
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: Insomnia/2023.5.6
+    authentication: {}
+    metaSortKey: -1693104261736.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f11ccf69d0be4a3fa63ed10309a884f0
+    parentId: fld_b5a2e8fce83c4294bdb61cd7a65b5127
+    modified: 1693147916502
+    created: 1693141949202
+    url: "{{ _.base_url }}/projects/11"
+    name: Delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: Insomnia/2023.5.6
+    authentication: {}
+    metaSortKey: -1693101601108.375
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_2eca1bea5c0141da8d5f06db5d87f1f3
+    parentId: fld_f20f2f8b083240b9bb9eb56bc1a47370
+    modified: 1693152083350
+    created: 1693150481482
+    url: "{{ _.base_url }}/developmentExperiences"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "name": "Desenvolvedor Full Stack",
+          "type": "Acadêmica",
+          "company": "TechCorp",
+          "description": "Desenvolvimento de aplicações web"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: Insomnia/2023.5.6
+    authentication: {}
+    metaSortKey: -1693150419636
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_f20f2f8b083240b9bb9eb56bc1a47370
+    parentId: wrk_418174c7347b4f1299da384eab699ca3
+    modified: 1692762241701
+    created: 1692762241701
+    name: developmentExperiences
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1692762241701
+    _type: request_group
+  - _id: req_ff07ee5d6cfd4b3789868cea70c162b3
+    parentId: fld_f20f2f8b083240b9bb9eb56bc1a47370
+    modified: 1693150469482
+    created: 1693150419536
+    url: "{{ _.base_url }}/developmentExperiences"
+    name: Get all
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: Insomnia/2023.5.6
+    authentication: {}
+    metaSortKey: -1693150419536
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_cba7ad7067f446db90d1b2a7484813cf
+    parentId: fld_f20f2f8b083240b9bb9eb56bc1a47370
+    modified: 1693152187731
+    created: 1693150501844
+    url: "{{ _.base_url }}/developmentExperiences/Acadêmica"
+    name: Get by type
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: Insomnia/2023.5.6
+    authentication: {}
+    metaSortKey: -1693145965035
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_8e31d63877ff44678c3ea9ddc9e7cd42
+    parentId: fld_f20f2f8b083240b9bb9eb56bc1a47370
+    modified: 1693152023985
+    created: 1693150647245
+    url: "{{ _.base_url }}/developmentExperiences/11"
+    name: Update
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "type": "Curso"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: Insomnia/2023.5.6
+    authentication: {}
+    metaSortKey: -1693143737784.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6fbd5f8cf57b46c295b1b369c196f4ab
+    parentId: fld_f20f2f8b083240b9bb9eb56bc1a47370
+    modified: 1693152167479
+    created: 1693150748973
+    url: "{{ _.base_url }}/developmentExperiences/13"
+    name: Delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: Insomnia/2023.5.6
+    authentication: {}
+    metaSortKey: -1693142624159.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_b7eeabb3fd4b4dccaae29de3fb92d070
+    parentId: fld_c41c24ab16e249b48c3b11671dfe8c65
+    modified: 1693107185834
+    created: 1693098940480
+    url: "{{ _.base_url }}/technologies"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "name": "ReactJS",
+          "stack": "Front-end",
+          "knowledgeLevel": "Intermediário"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: Insomnia/2023.5.6
+    authentication: {}
+    metaSortKey: -1693098940480
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_c41c24ab16e249b48c3b11671dfe8c65
+    parentId: wrk_418174c7347b4f1299da384eab699ca3
+    modified: 1693136878562
+    created: 1692762229800
+    name: technologies
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1692762229800
+    _type: request_group
+  - _id: req_5f9c843dcffa4f10b006c7ddf2f01b18
+    parentId: fld_c41c24ab16e249b48c3b11671dfe8c65
+    modified: 1693140379439
+    created: 1693099111199
+    url: "{{ _.base_url }}/technologies/19"
+    name: Update
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |
+        {
+          "name": "React",
+          "stack": "Back-end",
+          "knowledgeLevel": "Intermediário"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: Insomnia/2023.5.6
+    authentication: {}
+    metaSortKey: -1690654745839.5156
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_103197718a644cf5b78ea84875fc6b69
+    parentId: fld_c41c24ab16e249b48c3b11671dfe8c65
+    modified: 1693137575988
+    created: 1693099125816
+    url: "{{ _.base_url }}/technologies/19"
+    name: Delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: Insomnia/2023.5.6
+    authentication: {}
+    metaSortKey: -1689432648519.2734
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_b21ea7a4c3254096bbb48ed9744649ef
+    parentId: fld_c41c24ab16e249b48c3b11671dfe8c65
+    modified: 1693101170712
+    created: 1693099171128
+    url: "{{ _.base_url }}/technologies"
+    name: Get all
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: Insomnia/2023.5.6
+    authentication: {}
+    metaSortKey: -1688210551199.0312
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_21efa52b1ad949c08449d4726505c01d
+    parentId: fld_c41c24ab16e249b48c3b11671dfe8c65
+    modified: 1693107403249
+    created: 1693099206964
+    url: "{{ _.base_url }}/technologies/19"
+    name: Get one project
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: Insomnia/2023.5.6
+    authentication: {}
+    metaSortKey: -1675989577996.6094
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_867045c6bf4f1f063d003e6e1dfb419501b131ae
+    parentId: wrk_418174c7347b4f1299da384eab699ca3
+    modified: 1692762218122
+    created: 1692762218122
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1692762218122
+    _type: environment
+  - _id: jar_867045c6bf4f1f063d003e6e1dfb419501b131ae
+    parentId: wrk_418174c7347b4f1299da384eab699ca3
+    modified: 1692762218125
+    created: 1692762218125
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: env_35d005050e2441de8baa54190c1fa63b
+    parentId: env_867045c6bf4f1f063d003e6e1dfb419501b131ae
+    modified: 1693100488833
+    created: 1692762483781
+    name: Local
+    data:
+      base_url: http://localhost:3000
+    dataPropertyOrder:
+      "&":
+        - base_url
+    color: null
+    isPrivate: false
+    metaSortKey: 1692762483781
+    _type: environment
