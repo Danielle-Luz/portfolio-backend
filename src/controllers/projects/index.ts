@@ -61,7 +61,7 @@ export class ProjectsController {
   static async delete(request: Request, response: Response) {
     const { recordId } = request;
 
-    await ProjectsService.delete(recordId);
+    const deletedProject = await ProjectsService.delete(recordId);
 
     return response.status(204).send();
   }

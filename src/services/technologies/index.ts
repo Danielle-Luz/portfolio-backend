@@ -60,7 +60,5 @@ export class TechnologiesService {
     if (deletedTechnology.affected === 0) {
       throw new RecordNotFoundError(TechnologiesService.recordType, id);
     }
-
-    return deletedTechnology.affected;
   }
 }
