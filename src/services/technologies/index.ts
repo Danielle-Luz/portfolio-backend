@@ -25,6 +25,10 @@ export class TechnologiesService {
       .returning("*")
       .execute();
 
+    if (technologyAfterUpdate.affected === 0) {
+      throw new RecordNotFoundError(TechnologiesService.recordType, id);
+    }
+
     return technologyAfterUpdate.raw[0];
   }
 
