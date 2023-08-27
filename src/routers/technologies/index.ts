@@ -1,12 +1,11 @@
 import { Router } from "express";
 import { TechnologiesController } from "../../controllers";
-import { app } from "../../app";
 import { TechnologiesMiddlewares, UtilsMiddlewares } from "../../middlewares";
 
-const technologyRouter = Router();
+export const technologyRouter = Router();
 
 technologyRouter.post(
-  "/",
+  "",
   TechnologiesMiddlewares.validateNewTechnology,
   TechnologiesController.create
 );
@@ -18,7 +17,7 @@ technologyRouter.patch(
   TechnologiesController.update
 );
 
-technologyRouter.get("/", TechnologiesController.getAll);
+technologyRouter.get("", TechnologiesController.getAll);
 technologyRouter.get(
   "/:id",
   UtilsMiddlewares.validateId,
@@ -30,5 +29,3 @@ technologyRouter.delete(
   UtilsMiddlewares.validateId,
   TechnologiesController.delete
 );
-
-app.use("/technologies", technologyRouter);
