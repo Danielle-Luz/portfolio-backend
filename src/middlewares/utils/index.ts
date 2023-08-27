@@ -60,7 +60,7 @@ export class UtilsMiddlewares {
 
   static validateValueAsStack() {
     const paramName = "stack";
-
+    
     return UtilsMiddlewares.validateValueAsEnum(paramName, Stack);
   }
 }
