@@ -25,7 +25,8 @@ export class TechnologiesService {
       .returning("*")
       .execute();
 
-    if (technologyAfterUpdate.affected === 0) {
+    const wasNoTechnologyUpdated = technologyAfterUpdate.affected === 0;
+    if (wasNoTechnologyUpdated) {
       throw new RecordNotFoundError(TechnologiesService.recordType, id);
     }
 
@@ -57,7 +58,8 @@ export class TechnologiesService {
       .where("technologies.id = :id", { id })
       .execute();
 
-    if (deletedTechnology.affected === 0) {
+    const wasNoTechnologyDeleted = deletedTechnology.affected === 0;
+    if (wasNoTechnologyDeleted) {
       throw new RecordNotFoundError(TechnologiesService.recordType, id);
     }
   }
