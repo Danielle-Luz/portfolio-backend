@@ -124,62 +124,140 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 ```json
 [
-  {
-    "id": 1,
-    "name": "Projeto 1",
-    "description": "Descrição do projeto",
-    "coverImage": "https://imgur.com/imagem.png",
-    "highlight": false,
-    "url": "https://url-do-site.vercel.app"
-  },
-  {
-    "id": 2,
-    "name": "Projeto 2",
-    "description": "Descrição do projeto",
-    "coverImage": "https://imgur.com/imagem.png",
-    "highlight": false,
-    "url": "https://url-do-site.vercel.app"
-  },
-  {
-    "id": 3,
-    "name": "Projeto 3",
-    "description": "Descrição do projeto",
-    "coverImage": "https://imgur.com/imagem.png",
-    "highlight": false,
-    "url": "https://url-do-site.vercel.app"
-  }
+	{
+		"id": 1,
+		"name": "Nome de projeto",
+		"description": "Descrição aqui",
+		"stack": "Front-end",
+		"coverImage": "caminho/para/imagem.png",
+		"url": "https://www.projeto-incrivel.com",
+		"highlight": true,
+		"technologies": [
+			{
+				"id": 2,
+				"name": "ReactJS",
+				"stack": "Front-end",
+				"knowledgeLevel": "Intermediário"
+			}
+		]
+	},
+	{
+		"id": 2,
+		"name": "Outro projeto",
+		"description": "Outra descrição.",
+		"stack": "Full-stack",
+		"coverImage": "caminho/para/imagem.png",
+		"url": "https://www.projeto-incrivel.com",
+		"highlight": true,
+		"technologies": [
+			{
+				"id": 1,
+				"name": "Django",
+				"stack": "Back-end",
+				"knowledgeLevel": "Iniciante"
+			},
+			{
+				"id": 2,
+				"name": "ReactJS",
+				"stack": "Front-end",
+				"knowledgeLevel": "Intermediário"
+			}
+		]
+	}
 ]
 ```
 
-### **GET `/projects/:stack`**
+### **GET `/projects/stack/:stack`**
 
 ### _Regras de negócio_
 
 - Caso de sucesso:
-  - **Retorno**: Uma lista de objetos cujos registros tenham o tipo especificado na rota.
-  - **Rota da requisição**: `/projects/highlight`.
+  - **Retorno**: Uma lista de objetos cujos registros têm a stack especificada na rota.
+  - **Rota da requisição**: `/projects/stack/Full-stack`.
   - **Status**: 200 OK.
 
 **Exemplo de retorno**:
 
 ```json
 [
-  {
-    "id": 7,
-    "name": "Projeto 7",
-    "description": "Descrição do projeto",
-    "coverImage": "https://imgur.com/imagem.png",
-    "highlight": true,
-    "url": "https://url-do-site.vercel.app"
-  },
-  {
-    "id": 10,
-    "name": "Projeto 10",
-    "description": "Descrição do projeto",
-    "coverImage": "https://imgur.com/imagem.png",
-    "highlight": true,
-    "url": "https://url-do-site.vercel.app"
-  }
+	{
+		"id": 2,
+		"name": "Outro projeto",
+		"description": "Outra descrição.",
+		"stack": "Full-stack",
+		"coverImage": "caminho/para/imagem.png",
+		"url": "https://www.projeto-incrivel.com",
+		"highlight": true,
+		"technologies": [
+			{
+				"id": 1,
+				"name": "Django",
+				"stack": "Back-end",
+				"knowledgeLevel": "Iniciante"
+			},
+			{
+				"id": 2,
+				"name": "ReactJS",
+				"stack": "Front-end",
+				"knowledgeLevel": "Intermediário"
+			}
+		]
+	}
+]
+```
+
+### **GET `/projects/highlights`**
+
+### _Regras de negócio_
+
+- Caso de sucesso:
+  - **Retorno**: Uma lista de objetos cujos registros têm o campo highlight com o valor true.
+  - **Status**: 200 OK.
+
+**Exemplo de retorno**:
+
+```json
+[
+	{
+		"id": 1,
+		"name": "Nome de projeto",
+		"description": "Descrição aqui",
+		"stack": "Front-end",
+		"coverImage": "caminho/para/imagem.png",
+		"url": "https://www.projeto-incrivel.com",
+		"highlight": true,
+		"technologies": [
+			{
+				"id": 2,
+				"name": "ReactJS",
+				"stack": "Front-end",
+				"knowledgeLevel": "Intermediário"
+			}
+		]
+	},
+	{
+		"id": 2,
+		"name": "Outro projeto",
+		"description": "Outra descrição.",
+		"stack": "Full-stack",
+		"coverImage": "caminho/para/imagem.png",
+		"url": "https://www.projeto-incrivel.com",
+		"highlight": true,
+		"technologies": [
+			{
+				"id": 1,
+				"name": "Django",
+				"stack": "Back-end",
+				"knowledgeLevel": "Iniciante"
+			},
+			{
+				"id": 2,
+				"name": "ReactJS",
+				"stack": "Front-end",
+				"knowledgeLevel": "Intermediário"
+			}
+		]
+	}
 ]
 ```
 
@@ -196,11 +274,11 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 ```json
 {
-  "name": "Reciclarte",
-  "description": "Site em que é possível ver e buscar ideias de projeto DIY",
-  "coverImage": "https://imgur.com/tsl15Ae.png",
-  "highlight": false,
-  "url": "https://reciclarte.vercel.app"
+  "name": "Nome de projeto",
+  "description": "Descrição aqui",
+  "stack": "Front-end",
+  "coverImage": "caminho/para/imagem.png",
+  "url": "https://www.projeto-incrivel.com",
 }
 ```
 
@@ -209,11 +287,12 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 ```json
 {
   "id": 1,
-  "name": "Reciclarte",
-  "description": "Site em que é possível ver e buscar ideias de projeto DIY",
-  "coverImage": "https://imgur.com/tsl15Ae.png",
+  "name": "Nome de projeto",
+  "description": "Descrição aqui",
+  "stack": "Front-end",
+  "coverImage": "caminho/para/imagem.png",
+  "url": "https://www.projeto-incrivel.com",
   "highlight": false,
-  "url": "https://reciclarte.vercel.app"
 }
 ```
 
@@ -227,11 +306,11 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 ```json
 {
-  "name": "Reciclarte",
-  "description": "Site em que é possível ver e buscar ideias de projeto DIY",
-  "coverImage": "https://imgur.com/tsl15Ae.png",
-  "highlight": false,
-  "url": "https://reciclarte.vercel.app"
+  "name": "Nome de projeto",
+  "description": "Descrição aqui",
+  "stack": "Front-end",
+  "coverImage": "caminho/para/imagem.png",
+  "url": "https://www.projeto-incrivel.com",
 }
 ```
 
@@ -239,7 +318,7 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 ```json
 {
-  "message": "Project already exists"
+	"message": "A project with this name was already created"
 }
 ```
 
@@ -263,9 +342,18 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 ```json
 {
-  "name": ["Expected string, received number"],
-  "description": ["Expected string, received boolean"],
-  "url": ["Expected url, received string"]
+	"name": [
+		"Expected string, received number"
+	],
+	"description": [
+		"Expected string, received boolean"
+	],
+	"stack": [
+		"Required"
+	],
+	"url": [
+		"Invalid url"
+	]
 }
 ```
 
@@ -274,8 +362,8 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 ### _Regras de negócio_
 
 - Caso de sucesso:
-  - **Envio**: Um objeto contendo um array com os nomes das tecnologias que o projeto se relacionará.
-  - **Retorno**: Uma mensagem de sucesso.
+  - **Envio**: Um objeto contendo o id da tecnologia com a qual o projeto se relacionará.
+  - **Retorno**: Um objeto com os dados do projeto e com todas as tecnologias adicionadas.
   - **URL da requisição**: `/projects/1/technologies`.
   - **Status**: 200 OK.
 
@@ -283,7 +371,7 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 ```json
 {
-  "technologies": ["Django", "Flask"]
+  "id": 1
 }
 ```
 
@@ -291,14 +379,28 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 ```json
 {
-  "message": "Technologies related with success"
+  "id": 1,
+  "name": "Nome de projeto",
+  "description": "Descrição aqui",
+  "stack": "Front-end",
+  "coverImage": "caminho/para/imagem.png",
+  "url": "https://www.projeto-incrivel.com",
+  "highlight": true,
+  "technologies": [
+    {
+      "id": 1,
+      "name": "ReactJS",
+      "stack": "Front-end",
+      "knowledgeLevel": "Intermediário"
+    }
+  ]
 }
 ```
 
 ### _Casos de erro_
 
-- **Envio**: Um objeto contendo uma lista com tecnologias já relacionadas ao projeto.
-- **Retorno**: Uma mensagem indicando a quais tecnologias o projeto já estava relacionado.
+- **Envio**: Um objeto contendo o id de uma tecnologia já relacionada ao projeto.
+- **Retorno**: Uma mensagem indicando que a tecnologia já foi relacionada ao projeto.
 - **URL da requisição**: `/projects/1/technologies`.
 - **Status**: 409 UNIQUE.
 
@@ -306,7 +408,7 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 ```json
 {
-  "technologies": ["Django", "Flask", "Javascript"]
+  "id": 1
 }
 ```
 
@@ -314,12 +416,12 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 ```json
 {
-  "message": "The project is already related with the following technologies: Django, Flask"
+	"message": "The technology with id 1 was already added in this project"
 }
 ```
 
-- **Envio**: Um objeto contendo uma ou mais tecnologias não existentes.
-- **Retorno**: Uma mensagem indicando quais tecnologias não existem na base de dados.
+- **Envio**: Um objeto contendo o id de uma tecnologia não existente.
+- **Retorno**: Uma mensagem indicando que o id não foi encontrado.
 - **URL da requisição**: `/projects/1/technologies`.
 - **Status**: 404 NOT FOUND.
 
@@ -327,7 +429,7 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 ```json
 {
-  "technologies": ["HTML", "Panela"]
+  "id": 100
 }
 ```
 
@@ -335,20 +437,20 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 ```json
 {
-  "message": "The following technologies don't exist in the database: Panela"
+	"message": "Couldn't find any record of type technologies with id 100"
 }
 ```
 
-- Não é possível inserir tecnologias num projeto usando um ID não existente na URL:
+- Não é possível inserir tecnologias num projeto não existente cujo id foi indicado na url:
   - **Rota**: `/projects/100000000/technologies`
-  - **Retorno**: Um objeto contendo uma mensagem de erro.
+  - **Retorno**: Um objeto contendo uma mensagem de erro indicando que o projeto não existe.
   - **Status**: 404 NOT FOUND.
 
 **Exemplo de retorno**:
 
 ```json
 {
-  "message": "Project not found"
+	"message": "Couldn't find any record of type projects with id 100000000"
 }
 ```
 
@@ -366,8 +468,6 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 ```json
 {
-  "id": 400,
-  "coverImage": "https://i.imgur.com/4ZW9Gzm.jpeg",
   "highlight": false
 }
 ```
@@ -377,11 +477,12 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 ```json
 {
   "id": 1,
-  "name": "Reciclarte",
-  "description": "Site em que é possível ver e buscar ideias de projeto DIY",
-  "coverImage": "https://i.imgur.com/4ZW9Gzm.jpeg",
+  "name": "Nome de projeto",
+  "description": "Descrição aqui",
+  "stack": "Front-end",
+  "coverImage": "caminho/para/imagem.png",
+  "url": "https://www.projeto-incrivel.com",
   "highlight": false,
-  "url": "https://reciclarte.vercel.app"
 }
 ```
 
@@ -395,11 +496,7 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 ```json
 {
-  "name": "Reciclarte",
-  "description": "Site em que é possível ver e buscar ideias de projeto DIY",
-  "coverImage": "https://imgur.com/tsl15Ae.png",
-  "highlight": false,
-  "url": "https://reciclarte.vercel.app"
+  "name": "Nome do projeto",
 }
 ```
 
@@ -407,7 +504,7 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 ```json
 {
-  "message": "Project already exists"
+	"message": "A project with this name was already created"
 }
 ```
 
@@ -419,11 +516,7 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 ```json
 {
-  "name": 123,
-  "description": true,
-  "coverImage": "https://imgur.com/tsl15Ae.png",
-  "highlight": false,
-  "url": "https://reciclarte.vercel.app"
+  "highlight": "aaa"
 }
 ```
 
@@ -431,8 +524,9 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 ```json
 {
-  "name": ["Expected string, received number"],
-  "description": ["Expected string, received boolean"]
+	"highlight": [
+		"Expected boolean, received string"
+	]
 }
 ```
 
@@ -455,7 +549,7 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 ```json
 {
-  "message": "Project not found"
+	"message": "Couldn't find any record of type projects with id 100000000"
 }
 ```
 
@@ -478,6 +572,6 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 ```json
 {
-  "message": "Project not found"
+	"message": "Couldn't find any record of type projects with id 100000000"
 }
 ```
