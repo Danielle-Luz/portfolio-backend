@@ -1,8 +1,11 @@
 import { AppDataSource } from "../../data-source";
 import { Technologies } from "../../entities";
+import { RecordNotFoundError } from "../../errors/RecordNotFoundError";
 import { newTechnology, updatedTechnology } from "../../interfaces";
 
 export class TechnologiesService {
+  static recordType: string = "technologies";
+
   static async create(newTechnology: newTechnology) {
     const createdTechnology = await AppDataSource.createQueryBuilder()
       .insert()
@@ -46,8 +49,8 @@ export class TechnologiesService {
       .where("technologies.id = :id", { id })
       .execute();
 
-    if(deletedTechnology.affected === 0) {
-      throw 
+    if (deletedTechnology.affected === 0) {
+      throw new RecordNotFoundError(TechnologiesService.recordType, id);
     }
 
     return deletedTechnology.affected;
