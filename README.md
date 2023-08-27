@@ -753,9 +753,9 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 }
 ```
 
-- Não é possível atualizar um projeto usando um ID não existente na URL:
+- Não é possível atualizar uma experiência de desenvolvimento usando um ID não existente na URL:
   - **Rota**: `/developmentExperiences/100000000`
-  - **Envio**: Um objeto contendo os dados atualizados do projeto.
+  - **Envio**: Um objeto contendo os dados atualizados da experiência de desenvolvimento.
   - **Retorno**: Um objeto contendo uma mensagem de erro.
   - **Status**: 404 NOT FOUND.
 
@@ -785,7 +785,7 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 
 ### _Casos de erro_
 
-- Não é possível excluir um projeto usando um ID não existente na URL:
+- Não é possível excluir uma experiência de desenvolvimento usando um ID não existente na URL:
   - **Rota**: `/developmentExperiences/100000000`
   - **Retorno**: Um objeto contendo uma mensagem de erro.
   - **Status**: 404 NOT FOUND.
@@ -795,5 +795,230 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 ```json
 {
 	"message": "Couldn't find any record of type development experiences with id 100000000"
+}
+```
+
+### **GET `/technologies`**
+
+### _Regras de negócio_
+
+- Caso de sucesso:
+  - **Retorno**: Uma lista de objetos.
+  - **Status**: 200 OK.
+
+**Exemplo de retorno**:
+
+```json
+[
+	{
+		"id": 1,
+		"name": "Django",
+		"stack": "Full-stack",
+		"knowledgeLevel": "Iniciante"
+	},
+	{
+		"id": 2,
+		"name": "C#",
+		"stack": "Back-end",
+		"knowledgeLevel": "Iniciante"
+	},
+	{
+		"id": 3,
+		"name": "ReactJS",
+		"stack": "Front-end",
+		"knowledgeLevel": "Intermediário"
+	}
+]
+```
+
+### **GET `/technologies/:id`**
+
+### _Regras de negócio_
+
+- Caso de sucesso:
+  - **Retorno**: Um objeto com os dados da tecnologia cujo id foi especificado na rota.
+  - **Rota da requisição**: `/technologies/2`.
+  - **Status**: 200 OK.
+
+**Exemplo de retorno**:
+
+```json
+{
+	"id": 2,
+	"name": "C#",
+	"stack": "Back-end",
+	"knowledgeLevel": "Iniciante"
+}
+```
+
+- Não é possível buscar uma tecnologia usando um ID não existente na URL:
+  - **Rota**: `/technologies/100000000`
+  - **Retorno**: Um objeto contendo uma mensagem de erro.
+  - **Status**: 404 NOT FOUND.
+
+**Exemplo de retorno**:
+
+```json
+{
+	"message": "Couldn't find any record of type technologies with id 100000000"
+}
+```
+
+### **POST `/technologies`**
+
+### _Regras de negócio_
+
+- Caso de sucesso:
+  - **Envio**: Um objeto contendo os dados da tecnologia a ser criada.
+  - **Retorno**: Um objeto contendo os dados da tecnologia criada.
+  - **Status**: 201 CREATED.
+
+**Exemplo de envio**:
+
+```json
+{
+	"name": "C#",
+	"stack": "Back-end",
+	"knowledgeLevel": "Iniciante"
+}
+```
+
+**Exemplo de retorno**:
+
+```json
+{
+	"id": 2,
+	"name": "C#",
+	"stack": "Back-end",
+	"knowledgeLevel": "Iniciante"
+}
+```
+
+- **Envio**: Um objeto contendo dados em formato inválido.
+- **Retorno**: Um objeto indicando em quais campos os dados têm formato inválido.
+- **Status**: 400 BAD REQUEST.
+
+**Exemplo de envio**:
+
+```json
+{
+  "name": 0,
+  "stack": true,
+  "knowledgeLevel": "Intermediário"
+}
+
+```
+
+**Exemplo de retorno**:
+
+```json
+{
+	"name": [
+		"Expected string, received number"
+	],
+	"stack": [
+		"Expected 'Front-end' | 'Back-end' | 'Full-stack', received boolean"
+	]
+}
+```
+
+### **PATCH `/technologies/:id`**
+
+### _Regras de negócio_
+
+- Caso de sucesso:
+  - **Envio**: Um objeto contendo os dados atualizados da tecnologia.
+  - **Retorno**: Um objeto contendo todos os dados da tecnologia.
+  - **Rota da requisição**: `/technologies/3`
+  - **Status**: 200 OK.
+
+**Exemplo de envio**:
+
+```json
+{
+  "knowledgeLevel": "Avançado"
+}
+```
+
+**Exemplo de retorno**:
+
+```json
+{
+  "name": "ReactJS",
+  "stack": "Front-end",
+  "knowledgeLevel": "Avançado"
+}
+```
+
+- **Envio**: Um objeto contendo dados em formato inválido.
+- **Retorno**: Um objeto indicando em quais campos os dados têm formato inválido.
+- **Status**: 400 BAD REQUEST.
+
+**Exemplo de envio**:
+
+```json
+{
+  "name": 0,
+  "stack": true,
+  "knowledgeLevel": "Intermediário"
+}
+
+```
+
+**Exemplo de retorno**:
+
+```json
+{
+	"name": [
+		"Expected string, received number"
+	],
+	"stack": [
+		"Expected 'Front-end' | 'Back-end' | 'Full-stack', received boolean"
+	]
+}
+```
+
+- Não é possível atualizar uma tecnologia usando um ID não existente na URL:
+  - **Rota**: `/technologies/100000000`
+  - **Envio**: Um objeto contendo os dados atualizados da tecnologia.
+  - **Retorno**: Um objeto contendo uma mensagem de erro.
+  - **Status**: 404 NOT FOUND.
+
+**Exemplo de envio**:
+
+```json
+{
+  "knowledgeLevel": "Intermediário"
+}
+```
+
+**Exemplo de retorno**:
+
+```json
+{
+	"message": "Couldn't find any record of type technologies with id 100000000"
+}
+```
+
+### **DELETE `/technologies/:id`**
+
+### _Regras de negócio_
+
+- Caso de sucesso:
+  - **Rota da requisição**: `/technologies/1`
+  - **Status**: 204 NO CONTENT.
+
+### _Casos de erro_
+
+- Não é possível excluir uma tecnologia usando um ID não existente na URL:
+  - **Rota**: `/technologies/100000000`
+  - **Retorno**: Um objeto contendo uma mensagem de erro.
+  - **Status**: 404 NOT FOUND.
+
+**Exemplo de retorno**:
+
+```json
+{
+	"message": "Couldn't find any record of type technologies with id 100000000"
 }
 ```
