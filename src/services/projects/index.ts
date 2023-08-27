@@ -74,6 +74,8 @@ export class ProjectsService {
   }
 
   static async update(id: number, updatedProject: updatedProject) {
+    let wasNoProjectUpdated = false;
+
     try {
       const projectAfterUpdate = await AppDataSource.createQueryBuilder()
         .update(Projects)
@@ -82,15 +84,16 @@ export class ProjectsService {
         .returning("*")
         .execute();
 
-      const wasNoProjectUpdated = projectAfterUpdate.affected === 0;
-      if (wasNoProjectUpdated) {
-        throw new RecordNotFoundError(ProjectsService.recordType, id);
-      }
+      wasNoProjectUpdated = projectAfterUpdate.affected === 0;
 
       return projectAfterUpdate.raw[0];
     } catch (error) {
       const errorMessage = "A project with this name was already created";
       handleRecordAlreadyExistsError(error, errorMessage);
+    } finally {
+      if (wasNoProjectUpdated) {
+        throw new RecordNotFoundError(ProjectsService.recordType, id);
+      }
     }
   }
 
