@@ -575,3 +575,225 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 	"message": "Couldn't find any record of type projects with id 100000000"
 }
 ```
+
+### **GET `/developmentExperiences`**
+
+### _Regras de negócio_
+
+- Caso de sucesso:
+  - **Retorno**: Uma lista de objetos.
+  - **Status**: 200 OK.
+
+**Exemplo de retorno**:
+
+```json
+[
+	{
+		"id": 1,
+		"name": "Desenvolvedor Full Stack",
+		"type": "Curso",
+		"company": "TechCorp",
+		"description": "Desenvolvimento de aplicações web",
+		"startDate": "2022-08-26",
+		"endDate": null
+	},
+	{
+		"id": 2,
+		"name": "Análise e desenvolvimento de sistemas",
+		"type": "Acadêmica",
+		"company": "Estácio",
+    "description": "Ensino superior",
+    "startDate": null,
+		"endDate": null
+	}
+]
+```
+
+### **GET `/developmentExperiences/:type`**
+
+### _Regras de negócio_
+
+- Caso de sucesso:
+  - **Retorno**: Uma lista de objetos cujos registros têm o tipo especificado na rota.
+  - **Rota da requisição**: `/developmentExperiences/Curso`.
+  - **Status**: 200 OK.
+
+**Exemplo de retorno**:
+
+```json
+[
+	{
+		"id": 1,
+		"name": "Desenvolvedor Full Stack",
+		"type": "Curso",
+		"company": "TechCorp",
+		"description": "Desenvolvimento de aplicações web",
+		"startDate": "2022-08-26",
+		"endDate": null
+	}
+]
+```
+
+### **POST `/developmentExperiences`**
+
+### _Regras de negócio_
+
+- Caso de sucesso:
+  - **Envio**: Um objeto contendo os dados da experiência a ser criada.
+  - **Retorno**: Um objeto contendo os dados da experiência de desenvolvimento criada.
+  - **Status**: 201 CREATED.
+
+**Exemplo de envio**:
+
+```json
+{
+  "name": "Desenvolvedor Full Stack",
+  "type": "Curso",
+  "company": "TechCorp",
+  "description": "Desenvolvimento de aplicações web"
+}
+```
+
+**Exemplo de retorno**:
+
+```json
+{
+  "id": 1,
+  "name": "Desenvolvedor Full Stack",
+  "type": "Curso",
+  "company": "TechCorp",
+  "description": "Desenvolvimento de aplicações web",
+  "startDate": null,
+  "endDate": null,
+}
+```
+
+- **Envio**: Um objeto contendo dados em formato inválido.
+- **Retorno**: Um objeto indicando em quais campos os dados têm formato inválido.
+- **Status**: 400 BAD REQUEST.
+
+**Exemplo de envio**:
+
+```json
+{
+  "name": 23,
+  "type": true,
+  "company": 9,
+  "description": "Desenvolvimento de aplicações web"
+}
+```
+
+**Exemplo de retorno**:
+
+```json
+{
+	"name": [
+		"Expected string, received number"
+	],
+	"type": [
+		"Expected 'Acadêmica' | 'Curso' | 'Voluntariado' | 'Emprego', received boolean"
+	],
+	"company": [
+		"Expected string, received number"
+	]
+}
+```
+
+### **PATCH `/developmentExperiences/:id`**
+
+### _Regras de negócio_
+
+- Caso de sucesso:
+  - **Envio**: Um objeto contendo os dados atualizados da experiência de desenvolvimento.
+  - **Retorno**: Um objeto contendo todos os dados da experiência de desenvolvimento.
+  - **Rota da requisição**: `/developmentExperiences/1`
+  - **Status**: 200 OK.
+
+**Exemplo de envio**:
+
+```json
+{
+  "type": "Emprego"
+}
+```
+
+**Exemplo de retorno**:
+
+```json
+{
+	"id": 1,
+	"name": "Desenvolvedor Full Stack",
+	"type": "Emprego",
+	"company": "TechCorp",
+	"description": "Desenvolvimento de aplicações web",
+	"startDate": null,
+	"endDate": null
+}
+```
+
+- **Envio**: Um objeto contendo dados em formato inválido.
+- **Retorno**: Um objeto indicando em quais campos os dados têm formato inválido.
+- **Status**: 400 BAD REQUEST.
+
+**Exemplo de envio**:
+
+```json
+{
+  "type": 1
+}
+```
+
+**Exemplo de retorno**:
+
+```json
+{
+	"type": [
+		"Expected 'Acadêmica' | 'Curso' | 'Voluntariado' | 'Emprego', received number"
+	]
+}
+```
+
+- Não é possível atualizar um projeto usando um ID não existente na URL:
+  - **Rota**: `/developmentExperiences/100000000`
+  - **Envio**: Um objeto contendo os dados atualizados do projeto.
+  - **Retorno**: Um objeto contendo uma mensagem de erro.
+  - **Status**: 404 NOT FOUND.
+
+**Exemplo de envio**:
+
+```json
+{
+  "type": "Curso"
+}
+```
+
+**Exemplo de retorno**:
+
+```json
+{
+	"message": "Couldn't find any record of type development experiences with id 100000000"
+}
+```
+
+### **DELETE `/developmentExperiences/:id`**
+
+### _Regras de negócio_
+
+- Caso de sucesso:
+  - **Rota da requisição**: `/developmentExperiences/1`
+  - **Status**: 204 NO CONTENT.
+
+### _Casos de erro_
+
+- Não é possível excluir um projeto usando um ID não existente na URL:
+  - **Rota**: `/developmentExperiences/100000000`
+  - **Retorno**: Um objeto contendo uma mensagem de erro.
+  - **Status**: 404 NOT FOUND.
+
+**Exemplo de retorno**:
+
+```json
+{
+	"message": "Couldn't find any record of type development experiences with id 100000000"
+}
+```
