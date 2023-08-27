@@ -46,6 +46,10 @@ export class TechnologiesService {
       .where("technologies.id = :id", { id })
       .execute();
 
+    if(deletedTechnology.affected === 0) {
+      throw 
+    }
+
     return deletedTechnology.affected;
   }
 }

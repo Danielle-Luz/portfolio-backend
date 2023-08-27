@@ -2,6 +2,9 @@ import { AppError } from "./AppError";
 
 export class InvalidIdError extends AppError {
   constructor() {
-    super("The id should be a integer number", 400);
+    const message: string = "The id should be a integer number";
+    const status: number = 400;
+
+    super(message, status);
   }
 }
