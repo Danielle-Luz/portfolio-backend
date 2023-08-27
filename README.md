@@ -15,6 +15,8 @@
 <br>
 • <a href="#endpoints">Endpoints do serviço</a>
 <br>
+• <a href="#endpoints-insomnia">Endpoints para o insomnia</a>
+<br>
 • <a href="#entradas-responses">Endpoints, entradas e responses</a>
 <br>
 • <a href="#Desenvolvedora">Desenvolvedora</a>
@@ -40,6 +42,7 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 | SGBD       | MER                                             |
 | ---------- | ----------------------------------------------- |
 | PostgreSQL | [Diagrama MER da base de dados](MER.png) |
+
 
 ### Tabelas
 
@@ -109,6 +112,13 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 | POST   | /technologies               | Criação de uma tecnologia.                                                                                       |
 | PATCH  | /technologies/:id           | Atualiza a tecnologia passada por id.                                                                            |
 | DELETE | /technologies/:id           | Deleta a tecnologia passada por id.                                                                              |
+
+<h2 id="endpoints-insomnia">Endpoints para o insomnia</h2>
+
+| Tipo de arquivo       | Download                                             |
+| ---------- | ----------------------------------------------- |
+| YAML | [Endpoints para serem importados](Endpoints.yaml) |
+| JSON | [Endpoints para serem importados](Endpoints.json) |
 
 <h2 id="entradas-responses">Endpoints, entradas e responses</h2>
 
