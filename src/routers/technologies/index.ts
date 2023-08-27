@@ -6,14 +6,14 @@ export const technologyRouter = Router();
 
 technologyRouter.post(
   "",
-  TechnologiesMiddlewares.validateNewTechnology,
+  TechnologiesMiddlewares.validateNewTechnology(),
   TechnologiesController.create
 );
 
 technologyRouter.patch(
   "/:id",
   UtilsMiddlewares.validateId,
-  TechnologiesMiddlewares.validateUpdatedTechnology,
+  TechnologiesMiddlewares.validateUpdatedTechnology(),
   TechnologiesController.update
 );
 

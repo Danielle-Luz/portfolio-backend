@@ -7,13 +7,13 @@ export const projectRouter = Router();
 
 projectRouter.post(
   "",
-  ProjectsMiddlewares.validateNewProject,
+  ProjectsMiddlewares.validateNewProject(),
   ProjectsController.create
 );
 projectRouter.post(
   "/:id/technologies",
   UtilsMiddlewares.validateId,
-  UtilsMiddlewares.validateBodyParameterId,
+  UtilsMiddlewares.validateBodyParameterId(),
   ProjectsController.addTechnology
 );
 
@@ -34,7 +34,7 @@ projectRouter.get("/technologies", ProjectsController.getTechnologies);
 projectRouter.patch(
   "/:id",
   UtilsMiddlewares.validateId,
-  ProjectsMiddlewares.validateUpdatedProject,
+  ProjectsMiddlewares.validateUpdatedProject(),
   ProjectsController.update
 );
 
