@@ -82,6 +82,7 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
   - **name**: caractere, tamanho máximo de 40 e obrigatório.
   - **stack**: caractere, obrigatório, os valores possíveis são: "Front-end", "Back-end" e "Full-Stack".
   - **knowledgeLevel**: caractere, opcional, os valores possíveis são: "Iniciante", "Intermediário" e "Avançado", o valor default é "Iniciante".
+	- **iconUrl**: texto e obrigatório.
 
 ### Especificações da tabela `projectsTechnologies`
 
@@ -147,7 +148,8 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 				"id": 2,
 				"name": "ReactJS",
 				"stack": "Front-end",
-				"knowledgeLevel": "Intermediário"
+				"knowledgeLevel": "Intermediário",
+				"iconUrl": "https://img.icons8.com/windows/32/icon.png"
 			}
 		]
 	},
@@ -164,13 +166,15 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 				"id": 1,
 				"name": "Django",
 				"stack": "Back-end",
-				"knowledgeLevel": "Iniciante"
+				"knowledgeLevel": "Iniciante",
+				"iconUrl": "https://img.icons8.com/windows/32/icon.png"
 			},
 			{
 				"id": 2,
 				"name": "ReactJS",
 				"stack": "Front-end",
-				"knowledgeLevel": "Intermediário"
+				"knowledgeLevel": "Intermediário",
+				"iconUrl": "https://img.icons8.com/windows/32/icon.png"
 			}
 		]
 	}
@@ -203,13 +207,15 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 				"id": 1,
 				"name": "Django",
 				"stack": "Back-end",
-				"knowledgeLevel": "Iniciante"
+				"knowledgeLevel": "Iniciante",
+				"iconUrl": "https://img.icons8.com/windows/32/icon.png"
 			},
 			{
 				"id": 2,
 				"name": "ReactJS",
 				"stack": "Front-end",
-				"knowledgeLevel": "Intermediário"
+				"knowledgeLevel": "Intermediário",
+				"iconUrl": "https://img.icons8.com/windows/32/icon.png"
 			}
 		]
 	}
@@ -256,7 +262,8 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 				"id": 2,
 				"name": "ReactJS",
 				"stack": "Front-end",
-				"knowledgeLevel": "Intermediário"
+				"knowledgeLevel": "Intermediário",
+				"iconUrl": "https://img.icons8.com/windows/32/icon.png"
 			}
 		]
 	},
@@ -273,13 +280,15 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 				"id": 1,
 				"name": "Django",
 				"stack": "Back-end",
-				"knowledgeLevel": "Iniciante"
+				"knowledgeLevel": "Iniciante",
+				"iconUrl": "https://img.icons8.com/windows/32/icon.png"
 			},
 			{
 				"id": 2,
 				"name": "ReactJS",
 				"stack": "Front-end",
-				"knowledgeLevel": "Intermediário"
+				"knowledgeLevel": "Intermediário",
+				"iconUrl": "https://img.icons8.com/windows/32/icon.png"
 			}
 		]
 	}
@@ -416,7 +425,8 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
       "id": 1,
       "name": "ReactJS",
       "stack": "Front-end",
-      "knowledgeLevel": "Intermediário"
+      "knowledgeLevel": "Intermediário",
+			"iconUrl": "https://img.icons8.com/windows/32/icon.png"
     }
   ]
 }
@@ -950,19 +960,22 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 		"id": 1,
 		"name": "Django",
 		"stack": "Full-stack",
-		"knowledgeLevel": "Iniciante"
+		"knowledgeLevel": "Iniciante",
+		"iconUrl": "https://img.icons8.com/windows/32/icon.png"
 	},
 	{
 		"id": 2,
 		"name": "C#",
 		"stack": "Back-end",
-		"knowledgeLevel": "Iniciante"
+		"knowledgeLevel": "Iniciante",
+		"iconUrl": "https://img.icons8.com/windows/32/icon.png"
 	},
 	{
 		"id": 3,
 		"name": "ReactJS",
 		"stack": "Front-end",
-		"knowledgeLevel": "Intermediário"
+		"knowledgeLevel": "Intermediário",
+		"iconUrl": "https://img.icons8.com/windows/32/icon.png"
 	}
 ]
 ```
@@ -983,7 +996,8 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 	"id": 2,
 	"name": "C#",
 	"stack": "Back-end",
-	"knowledgeLevel": "Iniciante"
+	"knowledgeLevel": "Iniciante",
+	"iconUrl": "https://img.icons8.com/windows/32/icon.png"
 }
 ```
 
@@ -1029,7 +1043,8 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 {
 	"name": "C#",
 	"stack": "Back-end",
-	"knowledgeLevel": "Iniciante"
+	"knowledgeLevel": "Iniciante",
+	"iconUrl": "https://img.icons8.com/windows/32/icon.png"
 }
 ```
 
@@ -1040,7 +1055,8 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 	"id": 2,
 	"name": "C#",
 	"stack": "Back-end",
-	"knowledgeLevel": "Iniciante"
+	"knowledgeLevel": "Iniciante",
+	"iconUrl": "https://img.icons8.com/windows/32/icon.png"
 }
 ```
 
@@ -1056,7 +1072,8 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 {
   "name": 0,
   "stack": true,
-  "knowledgeLevel": "Intermediário"
+  "knowledgeLevel": "Intermediário",
+	"iconUrl": "https://img.icons8.com/windows/32/icon.png"
 }
 
 ```
@@ -1098,7 +1115,8 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 {
   "name": "ReactJS",
   "stack": "Front-end",
-  "knowledgeLevel": "Avançado"
+  "knowledgeLevel": "Avançado",
+	"iconUrl": "https://img.icons8.com/windows/32/icon.png"
 }
 ```
 
@@ -1136,7 +1154,8 @@ API construída para fornecer uma interface de inclusão, atualização e obten�
 {
   "name": 0,
   "stack": true,
-  "knowledgeLevel": "Intermediário"
+  "knowledgeLevel": "Intermediário",
+	"iconUrl": "https://img.icons8.com/windows/32/icon.png"
 }
 
 ```
