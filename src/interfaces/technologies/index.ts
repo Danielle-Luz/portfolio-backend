@@ -4,6 +4,7 @@ interface newTechnology {
   name: string;
   stack: Stack;
   knowledgeLevel: KnowledgeLevel;
+  iconUrl: string;
 }
 
 type updatedTechnology = Partial<newTechnology>;

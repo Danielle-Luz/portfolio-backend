@@ -26,4 +26,7 @@ export class Technologies {
 
   @ManyToMany(() => Projects, (project) => project.technologies)
   projects: Projects[];
+
+  @Column({type: "text", nullable: true})
+  iconUrl: string;
 }

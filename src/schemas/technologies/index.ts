@@ -12,6 +12,7 @@ const newTechnologySchema = z.object({
     .enum(knowledgeLevels)
     .optional()
     .default(KnowledgeLevel.BEGINNER),
+  iconUrl: z.string().url(),
 });
 
 const updatedTechnologySchema = newTechnologySchema.partial();
