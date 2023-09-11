@@ -12,7 +12,7 @@
     "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false
   },
-  "include": ["src", "app.ts"],
+  "include": ["./api/*.ts", "src", "app.ts"],
   "exclude": ["node_modules"],
   "typeRoots": ["./src/@types", "./node_modules/@types"]
 }
