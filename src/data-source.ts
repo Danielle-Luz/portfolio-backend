@@ -5,9 +5,10 @@ import { DataSource, DataSourceOptions } from "typeorm";
 
 const dataSourceConfig = (): DataSourceOptions => {
   const entitiesPath: string = path.join(__dirname, "./entities/**.{ts,js}");
+  const buildedEntitiesPath = "dist/entities/**{.ts,.js}";
   const migrationPath: string = path.join(__dirname, "./migrations/**.{ts,js}");
 
-  const dbUrl: string | undefined = "postgres://fiyxmdxp:q9irVXp_hlJKknN6LEOvqhT4gFGRKDEq@silly.db.elephantsql.com/fiyxmdxp";
+  const dbUrl: string | undefined = process.env.DATABASE_URL;
 
   if (!dbUrl) throw new Error("Missing env var: 'DATABASE_URL'");
 
@@ -27,7 +28,7 @@ const dataSourceConfig = (): DataSourceOptions => {
     url: dbUrl,
     synchronize: true,
     logging: false,
-    entities: [entitiesPath],
+    entities: [entitiesPath, buildedEntitiesPath],
     migrations: [migrationPath],
   };
 };
