@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "tsnd --cls --rs src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
-    "test": "jest"
+    "test": "jest",
+    "vercel-build": ""
   },
   "keywords": [],
   "author": "danielle-luz",
