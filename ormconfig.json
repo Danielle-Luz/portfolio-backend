@@ -7,10 +7,10 @@
   "synchronize": false,
   "logging": true,
   "entities": [
-     "src/entities/*{.ts,.js}"
+     "src/entities/**/*{.ts,.js}"
   ],
   "migrations": [
-     "src/migrations/*{.ts,.js}"
+     "src/migrations/**/*{.ts,.js}"
   ],
   "cli": {
     "entitiesDir": "src/entities",
