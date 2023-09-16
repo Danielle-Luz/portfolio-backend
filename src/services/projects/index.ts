@@ -1,5 +1,5 @@
 import { AppDataSource } from "../../data-source";
-import { Projects } from "../../entities";
+import { Projects } from "../../entities/Projects";
 import { Stack } from "../../enums";
 import { RecordNotFoundError } from "../../errors";
 import { newProject, updatedProject } from "../../interfaces";

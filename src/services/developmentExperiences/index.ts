@@ -1,5 +1,5 @@
 import { AppDataSource } from "../../data-source";
-import { DevelopmentExperiences } from "../../entities";
+import { DevelopmentExperiences } from "../../entities/DevelopmentExperiences";
 import { ExperienceType } from "../../enums";
 import { RecordNotFoundError } from "../../errors";
 import {
