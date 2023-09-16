@@ -1,6 +1,6 @@
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Stack } from "../enums";
-import { Technologies } from "./Technologies";
+import { Stack } from "../../enums";
+import { Technologies } from "../Technologies";
 
 @Entity()
 export class Projects {
