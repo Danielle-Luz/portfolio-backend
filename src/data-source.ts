@@ -5,6 +5,7 @@ import { DataSource, DataSourceOptions } from "typeorm";
 
 const dataSourceConfig = (): DataSourceOptions => {
   const entitiesPath: string = path.join(__dirname, "./entities/**.{ts,js}");
+  const buildedEntitiesPath = "dist/entities/**{.ts,.js}";
   const migrationPath: string = path.join(__dirname, "./migrations/**.{ts,js}");
 
   const dbUrl: string | undefined = process.env.DATABASE_URL;
@@ -26,8 +27,8 @@ const dataSourceConfig = (): DataSourceOptions => {
     type: "postgres",
     url: dbUrl,
     synchronize: true,
-    logging: false,
-    entities: [entitiesPath],
+    logging: true,
+    entities: [entitiesPath, buildedEntitiesPath],
     migrations: [migrationPath],
   };
 };
