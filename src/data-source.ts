@@ -5,30 +5,20 @@ import { DataSource, DataSourceOptions } from "typeorm";
 
 const dataSourceConfig = (): DataSourceOptions => {
   const entitiesPath: string = path.join(__dirname, "/entities/**/*.{ts,js}");
-  const buildedEntitiesPath = "dist/entities/**/*{.ts,.js}";
   const migrationPath: string = path.join(__dirname, "/migrations/**/*.{ts,js}");
 
   const dbUrl: string | undefined = process.env.DATABASE_URL;
 
-  if (!dbUrl) throw new Error("Missing env var: 'DATABASE_URL'");
-
-  const nodeEnv: string | undefined = process.env.NODE_ENV;
-
-  if (nodeEnv === "test") {
-    return {
-      type: "sqlite",
-      database: ":memory:",
-      synchronize: true,
-      entities: [entitiesPath],
-    };
-  }
-
   return {
-    type: "postgres",
-    url: dbUrl,
-    synchronize: true,
+    type: process.env.DB_TYPE as any,
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT),
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    synchronize: false,
     logging: true,
-    entities: [entitiesPath, buildedEntitiesPath],
+    entities: [entitiesPath],
     migrations: [migrationPath],
   };
 };
