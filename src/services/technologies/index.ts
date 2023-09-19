@@ -1,5 +1,5 @@
 import { AppDataSource } from "../../data-source";
-import { Technologies } from "../../entities/Technologies";
+import { Technologies } from "../../entities";
 import { RecordNotFoundError } from "../../errors";
 import { newTechnology, updatedTechnology } from "../../interfaces";
 
