@@ -7,7 +7,7 @@
     "dev": "tsnd --cls --rs src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "test": "jest",
-    "vercel-build": "echo deployed",
+    "vercel-build": "tsc",
     "build": "tsc"
   },
   "keywords": [],
