@@ -5,6 +5,7 @@ import {
 } from "./technologies";
 import {
   newProjectSchema,
+  manyNewProjectsSchema,
   readProjectSchema,
   updatedProjectSchema,
 } from "./projects";
@@ -19,6 +20,7 @@ export {
   updatedDevelopmentExperienceSchema,
   readDevelopmentExperienceSchema,
   newProjectSchema,
+  manyNewProjectsSchema,
   updatedProjectSchema,
   readProjectSchema,
   newTechnologySchema,

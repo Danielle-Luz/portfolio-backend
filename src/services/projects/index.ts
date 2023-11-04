@@ -1,3 +1,4 @@
+import { ObjectLiteral } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { Projects } from "../../entities";
 import { Stack } from "../../enums";
@@ -22,6 +23,17 @@ export class ProjectsService {
       const errorMessage = "A project with this name was already created";
       handleRecordAlreadyExistsError(error, errorMessage);
     }
+  }
+
+  static async createMany(projectList: newProject[]) {
+    const allProjectsCreated: ObjectLiteral[] = [] as ObjectLiteral[];
+
+    for (const project of projectList) {
+      const createdProject = await ProjectsService.create(project);
+      allProjectsCreated.push(createdProject);
+    };
+
+    return allProjectsCreated;
   }
 
   static async getAll() {

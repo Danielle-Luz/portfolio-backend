@@ -10,6 +10,11 @@ projectRouter.post(
   ProjectsController.create
 );
 projectRouter.post(
+  "/many",
+  ProjectsMiddlewares.validateManyNewProjects(),
+  ProjectsController.createMany
+);
+projectRouter.post(
   "/:id/technologies",
   UtilsMiddlewares.validateId,
   UtilsMiddlewares.validateBodyParameterId(),
