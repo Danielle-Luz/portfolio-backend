@@ -19,7 +19,7 @@ export class Projects {
   })
   stack: Stack;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   coverImage: string;
 
   @Column({ type: "text" })

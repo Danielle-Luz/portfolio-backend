@@ -12,6 +12,7 @@ declare global {
     interface Request {
       recordId: number;
       project: newProject | updatedProject;
+      projects: newProject[];
       technology: newTechnology | updatedTechnology;
       developmentExperience:
         | newDevelopmentExperience

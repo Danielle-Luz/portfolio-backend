@@ -15,6 +15,7 @@ interface recordId {
 type requestStorageProperties =
   | "technology"
   | "project"
+  | "projects"
   | "developmentExperience";
 
 export { zodFieldErrors, messageData, recordId, requestStorageProperties };
