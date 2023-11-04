@@ -10,7 +10,7 @@ import { handleRecordAlreadyExistsError } from "../utils";
 export class ProjectsService {
   static recordType: string = "projects";
 
-  static async create(project: newProject | newProject[]) {
+  static async create(project: newProject) {
     try {
       const createdProject = await AppDataSource.createQueryBuilder()
         .insert()
@@ -24,7 +24,18 @@ export class ProjectsService {
       handleRecordAlreadyExistsError(error, errorMessage);
     }
   }
-  
+
+  static async createMany(projectList: newProject[]) {
+    const allProjectsCreated: ObjectLiteral[] = [] as ObjectLiteral[];
+
+    for (const project of projectList) {
+      const createdProject = await ProjectsService.create(project);
+      allProjectsCreated.push(createdProject);
+    };
+
+    return allProjectsCreated;
+  }
+
   static async getAll() {
     return AppDataSource.getRepository(Projects)
       .createQueryBuilder("projects")

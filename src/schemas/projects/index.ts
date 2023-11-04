@@ -8,7 +8,7 @@ const newProjectSchema = z.object({
   name: z.string().max(20),
   description: z.string(),
   stack: z.enum(stacks),
-  coverImage: z.string().url().optional().default(""),
+  coverImage: z.string().url().optional(),
   url: z.string().url(),
   highlight: z.boolean().optional().default(false),
 });

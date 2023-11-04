@@ -13,7 +13,7 @@ export class ProjectsMiddlewares {
     );
   }
 
-  static validateManyNewProject() {
+  static validateManyNewProjects() {
     return UtilsMiddlewares.validateDataSchema(
       manyNewProjectsSchema,
       ProjectsMiddlewares.propertyToStoreMultipleProjects
