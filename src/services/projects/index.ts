@@ -1,3 +1,4 @@
+import { ObjectLiteral } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { Projects } from "../../entities";
 import { Stack } from "../../enums";
@@ -9,7 +10,7 @@ import { handleRecordAlreadyExistsError } from "../utils";
 export class ProjectsService {
   static recordType: string = "projects";
 
-  static async create(project: newProject) {
+  static async create(project: newProject | newProject[]) {
     try {
       const createdProject = await AppDataSource.createQueryBuilder()
         .insert()
@@ -23,7 +24,7 @@ export class ProjectsService {
       handleRecordAlreadyExistsError(error, errorMessage);
     }
   }
-
+  
   static async getAll() {
     return AppDataSource.getRepository(Projects)
       .createQueryBuilder("projects")

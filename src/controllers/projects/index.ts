@@ -14,6 +14,10 @@ export class ProjectsController {
     return response.status(201).json(createdProject);
   }
 
+  static createMany(request: Request, response: Response) {
+    
+  }
+
   static async getAll(request: Request, response: Response) {
     const allProjectsFound = await ProjectsService.getAll();
 
