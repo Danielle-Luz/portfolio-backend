@@ -5,18 +5,16 @@ import { Stack } from "../../enums";
 
 export class ProjectsController {
   static async create(request: Request, response: Response) {
-    const { project: newRecordData } = request;
+    let newRecordData = request.project
+      ? (request.project as newProject)
+      : (request.projects as newProject[]);
 
-    const createdProject = await ProjectsService.create(
-      newRecordData as newProject
-    );
+    const createdProject = await ProjectsService.create(newRecordData);
 
     return response.status(201).json(createdProject);
   }
 
-  static createMany(request: Request, response: Response) {
-    
-  }
+  static createMany(request: Request, response: Response) {}
 
   static async getAll(request: Request, response: Response) {
     const allProjectsFound = await ProjectsService.getAll();
