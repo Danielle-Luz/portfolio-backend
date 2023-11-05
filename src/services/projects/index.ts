@@ -31,7 +31,7 @@ export class ProjectsService {
     for (const project of projectList) {
       const createdProject = await ProjectsService.create(project);
       allProjectsCreated.push(createdProject);
-    };
+    }
 
     return allProjectsCreated;
   }
@@ -40,6 +40,7 @@ export class ProjectsService {
     return AppDataSource.getRepository(Projects)
       .createQueryBuilder("projects")
       .leftJoinAndSelect("projects.technologies", "technologies")
+      .orderBy("stack", "DESC")
       .getMany();
   }
 
@@ -62,6 +63,7 @@ export class ProjectsService {
       .from(Projects, "projects")
       .where("projects.stack = :stack", { stack })
       .leftJoinAndSelect("projects.technologies", "technologies")
+      .orderBy("stack", "DESC")
       .getMany();
   }
 
@@ -71,6 +73,7 @@ export class ProjectsService {
       .from(Projects, "projects")
       .where("projects.highlight = true")
       .leftJoinAndSelect("projects.technologies", "technologies")
+      .orderBy("stack", "DESC")
       .getMany();
   }
 
