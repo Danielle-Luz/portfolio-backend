@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.developmentExperienceRouter = void 0;
+const express_1 = require("express");
+const controllers_1 = require("../../controllers");
+const middlewares_1 = require("../../middlewares");
+exports.developmentExperienceRouter = (0, express_1.Router)();
+exports.developmentExperienceRouter.post("", middlewares_1.DevelopmentExperiencesMiddlewares.validateNewDevelopmentExperience(), controllers_1.DevelopmentExperiencesController.create);
+exports.developmentExperienceRouter.get("", controllers_1.DevelopmentExperiencesController.getAll);
+exports.developmentExperienceRouter.get("/:type", middlewares_1.DevelopmentExperiencesMiddlewares.validateValueAsExperienceType(), controllers_1.DevelopmentExperiencesController.getByType);
+exports.developmentExperienceRouter.patch("/:id", middlewares_1.UtilsMiddlewares.validateId, middlewares_1.DevelopmentExperiencesMiddlewares.validateUpdatedDevelopmentExperience(), controllers_1.DevelopmentExperiencesController.update);
+exports.developmentExperienceRouter.delete("/:id", middlewares_1.UtilsMiddlewares.validateId, controllers_1.DevelopmentExperiencesController.delete);
