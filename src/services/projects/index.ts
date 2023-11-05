@@ -40,7 +40,7 @@ export class ProjectsService {
     return AppDataSource.getRepository(Projects)
       .createQueryBuilder("projects")
       .leftJoinAndSelect("projects.technologies", "technologies")
-      .orderBy("stack", "DESC")
+      .orderBy("projects.stack", "DESC")
       .getMany();
   }
 
@@ -63,7 +63,7 @@ export class ProjectsService {
       .from(Projects, "projects")
       .where("projects.stack = :stack", { stack })
       .leftJoinAndSelect("projects.technologies", "technologies")
-      .orderBy("stack", "DESC")
+      .orderBy("projects.stack", "DESC")
       .getMany();
   }
 
@@ -73,7 +73,7 @@ export class ProjectsService {
       .from(Projects, "projects")
       .where("projects.highlight = true")
       .leftJoinAndSelect("projects.technologies", "technologies")
-      .orderBy("stack", "DESC")
+      .orderBy("projects.stack", "DESC")
       .getMany();
   }
 
@@ -83,6 +83,7 @@ export class ProjectsService {
       .from(Projects, "projects")
       .where("projects.id = :id", { id })
       .leftJoinAndSelect("projects.technologies", "technologies")
+      .orderBy("projects.stack", "DESC")
       .getOneOrFail();
 
     return foundProject.technologies;
