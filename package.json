@@ -2,8 +2,9 @@
   "name": "portfolio-backend",
   "version": "1.0.0",
   "description": "Back-end of a portfolio",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
+    "deploy": "firebase deploy --only functions:api",
     "dev": "tsnd --cls --rs src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "test": "jest",
@@ -29,10 +30,15 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
+    "firebase-admin": "^11.11.0",
+    "firebase-functions": "^4.5.0",
     "pg": "^8.11.3",
     "reflect-metadata": "^0.1.13",
     "ts-node-dev": "^2.0.0",
     "typeorm": "^0.3.17",
     "zod": "^3.22.4"
+  },
+  "engines": {
+    "node": "18"
   }
 }

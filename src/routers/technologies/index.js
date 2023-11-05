@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.technologyRouter = void 0;
+const express_1 = require("express");
+const controllers_1 = require("../../controllers");
+const middlewares_1 = require("../../middlewares");
+exports.technologyRouter = (0, express_1.Router)();
+exports.technologyRouter.post("", middlewares_1.TechnologiesMiddlewares.validateNewTechnology(), controllers_1.TechnologiesController.create);
+exports.technologyRouter.patch("/:id", middlewares_1.UtilsMiddlewares.validateId, middlewares_1.TechnologiesMiddlewares.validateUpdatedTechnology(), controllers_1.TechnologiesController.update);
+exports.technologyRouter.get("", controllers_1.TechnologiesController.getAll);
+exports.technologyRouter.get("/:id", middlewares_1.UtilsMiddlewares.validateId, controllers_1.TechnologiesController.getOne);
+exports.technologyRouter.delete("/:id", middlewares_1.UtilsMiddlewares.validateId, controllers_1.TechnologiesController.delete);

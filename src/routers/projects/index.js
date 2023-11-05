@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.projectRouter = void 0;
+const express_1 = require("express");
+const controllers_1 = require("../../controllers");
+const middlewares_1 = require("../../middlewares");
+exports.projectRouter = (0, express_1.Router)();
+exports.projectRouter.post("", middlewares_1.ProjectsMiddlewares.validateNewProject(), controllers_1.ProjectsController.create);
+exports.projectRouter.post("/many", middlewares_1.ProjectsMiddlewares.validateManyNewProjects(), controllers_1.ProjectsController.createMany);
+exports.projectRouter.post("/:id/technologies", middlewares_1.UtilsMiddlewares.validateId, middlewares_1.UtilsMiddlewares.validateBodyParameterId(), controllers_1.ProjectsController.addTechnology);
+exports.projectRouter.get("", controllers_1.ProjectsController.getAll);
+exports.projectRouter.get("/highlights", controllers_1.ProjectsController.getHighlights);
+exports.projectRouter.get("/stack/:stack", middlewares_1.UtilsMiddlewares.validateValueAsStack(), controllers_1.ProjectsController.getByStack);
+exports.projectRouter.get("/:id", middlewares_1.UtilsMiddlewares.validateId, controllers_1.ProjectsController.getOne);
+exports.projectRouter.get("/:id/technologies", middlewares_1.UtilsMiddlewares.validateId, controllers_1.ProjectsController.getTechnologies);
+exports.projectRouter.patch("/:id", middlewares_1.UtilsMiddlewares.validateId, middlewares_1.ProjectsMiddlewares.validateUpdatedProject(), controllers_1.ProjectsController.update);
+exports.projectRouter.delete("/:id", middlewares_1.UtilsMiddlewares.validateId, controllers_1.ProjectsController.delete);
