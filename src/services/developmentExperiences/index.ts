@@ -25,6 +25,7 @@ export class DevelopmentExperiencesService {
   static async getAll() {
     return AppDataSource.getRepository(DevelopmentExperiences)
       .createQueryBuilder()
+      .orderBy("startDate", "DESC")
       .getMany();
   }
 
@@ -33,6 +34,7 @@ export class DevelopmentExperiencesService {
       .select("development_experiences")
       .from(DevelopmentExperiences, "development_experiences")
       .where("development_experiences.type = :type", { type })
+      .orderBy("startDate", "DESC")
       .getMany();
   }
 

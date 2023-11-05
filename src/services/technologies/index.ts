@@ -36,6 +36,7 @@ export class TechnologiesService {
   static async getAll() {
     return AppDataSource.getRepository(Technologies)
       .createQueryBuilder()
+      .orderBy("name", "ASC")
       .getMany();
   }
 
